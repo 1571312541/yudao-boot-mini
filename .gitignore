@@ -54,3 +54,9 @@ application-my.yaml
 **/.DS_Store
 
 .spec-workflow/
+.ace-tool/
+.claude/
+.gemini/
+nul
+CLAUDE.md
+**/CLAUDE.md

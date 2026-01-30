@@ -8,7 +8,6 @@
  Date: 2025-05-22 21:03:59
 */
 
-
 -- ----------------------------
 -- Table structure for dual
 -- ----------------------------
@@ -64,9 +63,7 @@ CREATE TABLE infra_api_access_log
     create_time      datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater          nvarchar(64)  DEFAULT ''                NULL,
     update_time      datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted          bit           DEFAULT 0                 NOT NULL,
-    tenant_id        bigint        DEFAULT 0                 NOT NULL
-)
+    deleted          bit           DEFAULT 0                 NOT NULL)
 GO
 
 CREATE INDEX idx_infra_api_access_log_01 ON infra_api_access_log (create_time)
@@ -241,13 +238,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'infra_api_access_log',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'API 访问日志表',
      'SCHEMA', N'dbo',
      'TABLE', N'infra_api_access_log'
@@ -286,9 +276,7 @@ CREATE TABLE infra_api_error_log
     create_time                  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater                      nvarchar(64)  DEFAULT ''                NULL,
     update_time                  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted                      bit           DEFAULT 0                 NOT NULL,
-    tenant_id                    bigint        DEFAULT 0                 NOT NULL
-)
+    deleted                      bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -478,13 +466,6 @@ EXEC sp_addextendedproperty
      'SCHEMA', N'dbo',
      'TABLE', N'infra_api_error_log',
      'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'infra_api_error_log',
-     'COLUMN', N'tenant_id'
 GO
 
 EXEC sp_addextendedproperty
@@ -1806,9 +1787,7 @@ CREATE TABLE system_dept
     create_time    datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater        nvarchar(64) DEFAULT ''                NULL,
     update_time    datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted        bit          DEFAULT 0                 NOT NULL,
-    tenant_id      bigint       DEFAULT 0                 NOT NULL
-)
+    deleted        bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -1903,13 +1882,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_dept',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'部门表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_dept'
@@ -1923,34 +1895,20 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_dept ON
 GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (100, N'芋道源码', 0, 0, 1, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2025-03-29 15:47:53', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (101, N'深圳总公司', 100, 1, 104, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2025-03-29 15:49:55', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (102, N'长沙分公司', 100, 2, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'', N'2021-12-15 05:01:40', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (103, N'研发部门', 101, 1, 1, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2024-10-02 10:22:03', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (104, N'市场部门', 101, 2, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'', N'2021-12-15 05:01:38', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (105, N'测试部门', 101, 3, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2022-05-16 20:25:15', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (106, N'财务部门', 101, 4, 103, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'103', N'2022-01-15 21:32:22', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (107, N'运维部门', 101, 5, 1, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2023-12-02 09:28:22', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (108, N'市场部门', 102, 1, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2022-02-16 08:35:45', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (109, N'财务部门', 102, 2, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'', N'2021-12-15 05:01:29', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (110, N'新部门', 0, 1, NULL, NULL, NULL, 0, N'110', N'2022-02-23 20:46:30', N'110', N'2022-02-23 20:46:30', N'0', 121)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (111, N'顶级部门', 0, 1, NULL, NULL, NULL, 0, N'113', N'2022-03-07 21:44:50', N'113', N'2022-03-07 21:44:50', N'0', 122)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (112, N'产品部门', 101, 100, 1, NULL, NULL, 1, N'1', N'2023-12-02 09:45:13', N'1', N'2023-12-02 09:45:31', N'0', 1)
-GO
-INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (113, N'支持部门', 102, 3, 104, NULL, NULL, 1, N'1', N'2023-12-02 09:47:38', N'1', N'2025-03-29 15:00:56', N'0', 1)
-GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (100, N'芋道源码', 0, 0, 1, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2025-03-29 15:47:53', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (101, N'深圳总公司', 100, 1, 104, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2025-03-29 15:49:55', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (102, N'长沙分公司', 100, 2, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'', N'2021-12-15 05:01:40', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (103, N'研发部门', 101, 1, 1, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2024-10-02 10:22:03', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (104, N'市场部门', 101, 2, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'', N'2021-12-15 05:01:38', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (105, N'测试部门', 101, 3, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2022-05-16 20:25:15', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (106, N'财务部门', 101, 4, 103, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'103', N'2022-01-15 21:32:22', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (107, N'运维部门', 101, 5, 1, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2023-12-02 09:28:22', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (108, N'市场部门', 102, 1, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'1', N'2022-02-16 08:35:45', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (109, N'财务部门', 102, 2, NULL, N'15888888888', N'ry@qq.com', 0, N'admin', N'2021-01-05 17:03:47', N'', N'2021-12-15 05:01:29', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (110, N'新部门', 0, 1, NULL, NULL, NULL, 0, N'110', N'2022-02-23 20:46:30', N'110', N'2022-02-23 20:46:30', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (111, N'顶级部门', 0, 1, NULL, NULL, NULL, 0, N'113', N'2022-03-07 21:44:50', N'113', N'2022-03-07 21:44:50', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (112, N'产品部门', 101, 100, 1, NULL, NULL, 1, N'1', N'2023-12-02 09:45:13', N'1', N'2023-12-02 09:45:31', N'0')GO
+INSERT INTO system_dept (id, name, parent_id, sort, leader_user_id, phone, email, status, creator, create_time, updater, update_time, deleted) VALUES (113, N'支持部门', 102, 3, 104, NULL, NULL, 1, N'1', N'2023-12-02 09:47:38', N'1', N'2025-03-29 15:00:56', N'0')GO
 SET IDENTITY_INSERT system_dept OFF
 GO
 COMMIT
@@ -2185,29 +2143,17 @@ INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_t
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (64, 2, N'已忽略', N'2', N'infra_api_error_log_process_status', 0, N'danger', N'', NULL, N'', N'2021-02-26 07:07:34', N'1', N'2022-02-16 20:14:14', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (66, 1, N'阿里云', N'ALIYUN', N'system_sms_channel_code', 0, N'primary', N'', NULL, N'1', N'2021-04-05 01:05:26', N'1', N'2024-07-22 22:23:25', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (67, 1, N'验证码', N'1', N'system_sms_template_type', 0, N'warning', N'', NULL, N'1', N'2021-04-05 21:50:57', N'1', N'2022-02-16 12:48:30', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (68, 2, N'通知', N'2', N'system_sms_template_type', 0, N'primary', N'', NULL, N'1', N'2021-04-05 21:51:08', N'1', N'2022-02-16 12:48:27', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (69, 0, N'营销', N'3', N'system_sms_template_type', 0, N'danger', N'', NULL, N'1', N'2021-04-05 21:51:15', N'1', N'2022-02-16 12:48:22', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (70, 0, N'初始化', N'0', N'system_sms_send_status', 0, N'primary', N'', NULL, N'1', N'2021-04-11 20:18:33', N'1', N'2022-02-16 10:26:07', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (71, 1, N'发送成功', N'10', N'system_sms_send_status', 0, N'success', N'', NULL, N'1', N'2021-04-11 20:18:43', N'1', N'2022-02-16 10:25:56', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (72, 2, N'发送失败', N'20', N'system_sms_send_status', 0, N'danger', N'', NULL, N'1', N'2021-04-11 20:18:49', N'1', N'2022-02-16 10:26:03', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (73, 3, N'不发送', N'30', N'system_sms_send_status', 0, N'info', N'', NULL, N'1', N'2021-04-11 20:19:44', N'1', N'2022-02-16 10:26:10', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (74, 0, N'等待结果', N'0', N'system_sms_receive_status', 0, N'primary', N'', NULL, N'1', N'2021-04-11 20:27:43', N'1', N'2022-02-16 10:28:24', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (75, 1, N'接收成功', N'10', N'system_sms_receive_status', 0, N'success', N'', NULL, N'1', N'2021-04-11 20:29:25', N'1', N'2022-02-16 10:28:28', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (76, 2, N'接收失败', N'20', N'system_sms_receive_status', 0, N'danger', N'', NULL, N'1', N'2021-04-11 20:29:31', N'1', N'2022-02-16 10:28:32', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (77, 0, N'调试(钉钉)', N'DEBUG_DING_TALK', N'system_sms_channel_code', 0, N'info', N'', NULL, N'1', N'2021-04-13 00:20:37', N'1', N'2022-02-16 10:10:00', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (80, 100, N'账号登录', N'100', N'system_login_type', 0, N'primary', N'', N'账号登录', N'1', N'2021-10-06 00:52:02', N'1', N'2022-02-16 13:11:34', N'0')
 GO
@@ -2445,13 +2391,9 @@ INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_t
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1222, 10, N'事件', N'event', N'mp_message_type', 0, N'default', N'', N'公众号的消息类型 - 事件', N'1', N'2023-01-17 22:17:32', N'1', N'2023-01-17 14:24:49', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1223, 0, N'初始化', N'0', N'system_mail_send_status', 0, N'primary', N'', N'邮件发送状态 - 初始化\n', N'1', N'2023-01-26 09:53:49', N'1', N'2023-01-26 16:36:14', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1224, 10, N'发送成功', N'10', N'system_mail_send_status', 0, N'success', N'', N'邮件发送状态 - 发送成功', N'1', N'2023-01-26 09:54:28', N'1', N'2023-01-26 16:36:22', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1225, 20, N'发送失败', N'20', N'system_mail_send_status', 0, N'danger', N'', N'邮件发送状态 - 发送失败', N'1', N'2023-01-26 09:54:50', N'1', N'2023-01-26 16:36:26', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1226, 30, N'不发送', N'30', N'system_mail_send_status', 0, N'info', N'', N'邮件发送状态 -  不发送', N'1', N'2023-01-26 09:55:06', N'1', N'2023-01-26 16:36:36', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1227, 1, N'通知公告', N'1', N'system_notify_template_type', 0, N'primary', N'', N'站内信模版的类型 - 通知公告', N'1', N'2023-01-28 10:35:59', N'1', N'2023-01-28 10:35:59', N'0')
 GO
@@ -2639,18 +2581,6 @@ INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_t
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1434, 10, N'邮件咨询', N'10', N'crm_customer_source', 0, N'default', N'', N'', N'1', N'2023-10-28 23:10:33', N'1', N'2023-10-28 23:10:33', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1435, 10, N'Gitee', N'10', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:04:42', N'1', N'2023-11-04 13:04:42', N'0')
-GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1436, 20, N'钉钉', N'20', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:04:54', N'1', N'2023-11-04 13:04:54', N'0')
-GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1437, 30, N'企业微信', N'30', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:05:09', N'1', N'2023-11-04 13:05:09', N'0')
-GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1438, 31, N'微信公众平台', N'31', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:05:18', N'1', N'2023-11-04 13:05:18', N'0')
-GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1439, 32, N'微信开放平台', N'32', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:05:30', N'1', N'2023-11-04 13:05:30', N'0')
-GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1440, 34, N'微信小程序', N'34', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:05:38', N'1', N'2023-11-04 13:07:16', N'0')
-GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1441, 1, N'上架', N'1', N'crm_product_status', 0, N'success', N'', N'', N'1', N'2023-10-30 21:49:34', N'1', N'2023-10-30 21:49:34', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1442, 0, N'下架', N'0', N'crm_product_status', 0, N'success', N'', N'', N'1', N'2023-10-30 21:49:13', N'1', N'2023-10-30 21:49:13', N'0')
@@ -2813,139 +2743,76 @@ INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_t
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1536, 3, N'无效', N'3', N'crm_business_end_status_type', 0, N'info', N'', N'', N'1', N'2024-04-13 23:27:59', N'1', N'2024-04-13 23:27:59', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1537, 1, N'OpenAI', N'OpenAI', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-05-09 22:33:47', N'1', N'2024-05-09 22:58:46', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1538, 2, N'Ollama', N'Ollama', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-05-17 23:02:55', N'1', N'2024-05-17 23:02:55', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1539, 3, N'文心一言', N'YiYan', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-05-18 09:24:20', N'1', N'2024-05-18 09:29:01', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1540, 4, N'讯飞星火', N'XingHuo', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-05-18 10:08:56', N'1', N'2024-05-18 10:08:56', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1541, 5, N'通义千问', N'TongYi', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-05-18 10:32:29', N'1', N'2024-07-06 15:42:29', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1542, 6, N'StableDiffusion', N'StableDiffusion', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-06-01 15:09:31', N'1', N'2024-06-01 15:10:25', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1543, 10, N'进行中', N'10', N'ai_image_status', 0, N'primary', N'', N'', N'1', N'2024-06-26 20:51:41', N'1', N'2024-06-26 20:52:48', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1544, 20, N'已完成', N'20', N'ai_image_status', 0, N'success', N'', N'', N'1', N'2024-06-26 20:52:07', N'1', N'2024-06-26 20:52:41', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1545, 30, N'已失败', N'30', N'ai_image_status', 0, N'warning', N'', N'', N'1', N'2024-06-26 20:52:25', N'1', N'2024-06-26 20:52:35', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1546, 7, N'Midjourney', N'Midjourney', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-06-26 22:14:46', N'1', N'2024-06-26 22:14:46', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1547, 10, N'进行中', N'10', N'ai_music_status', 0, N'primary', N'', N'', N'1', N'2024-06-27 22:45:22', N'1', N'2024-06-28 00:56:17', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1548, 20, N'已完成', N'20', N'ai_music_status', 0, N'success', N'', N'', N'1', N'2024-06-27 22:45:33', N'1', N'2024-06-28 00:56:18', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1549, 30, N'已失败', N'30', N'ai_music_status', 0, N'danger', N'', N'', N'1', N'2024-06-27 22:45:44', N'1', N'2024-06-28 00:56:19', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1550, 1, N'歌词模式', N'1', N'ai_generate_mode', 0, N'', N'', N'', N'1', N'2024-06-27 22:46:31', N'1', N'2024-06-28 01:22:25', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1551, 2, N'描述模式', N'2', N'ai_generate_mode', 0, N'', N'', N'', N'1', N'2024-06-27 22:46:37', N'1', N'2024-06-28 01:22:24', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1552, 8, N'Suno', N'Suno', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-06-29 09:13:36', N'1', N'2024-06-29 09:13:41', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1553, 9, N'DeepSeek', N'DeepSeek', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-07-06 12:04:30', N'1', N'2024-07-06 12:05:20', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1554, 13, N'智谱', N'ZhiPu', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-07-06 18:00:35', N'1', N'2025-02-24 20:18:41', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1555, 4, N'长', N'4', N'ai_write_length', 0, N'', N'', N'', N'1', N'2024-07-07 15:49:03', N'1', N'2024-07-07 15:49:03', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1556, 5, N'段落', N'5', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:49:54', N'1', N'2024-07-07 15:49:54', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1557, 6, N'文章', N'6', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:50:05', N'1', N'2024-07-07 15:50:05', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1558, 7, N'博客文章', N'7', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:50:23', N'1', N'2024-07-07 15:50:23', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1559, 8, N'想法', N'8', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:50:31', N'1', N'2024-07-07 15:50:31', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1560, 9, N'大纲', N'9', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:50:37', N'1', N'2024-07-07 15:50:37', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1561, 1, N'自动', N'1', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:51:06', N'1', N'2024-07-07 15:51:06', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1562, 2, N'友善', N'2', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:51:19', N'1', N'2024-07-07 15:51:19', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1563, 3, N'随意', N'3', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:51:27', N'1', N'2024-07-07 15:51:27', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1564, 4, N'友好', N'4', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:51:37', N'1', N'2024-07-07 15:51:37', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1565, 5, N'专业', N'5', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:51:49', N'1', N'2024-07-07 15:52:02', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1566, 6, N'诙谐', N'6', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:52:15', N'1', N'2024-07-07 15:52:15', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1567, 7, N'有趣', N'7', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:52:24', N'1', N'2024-07-07 15:52:24', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1568, 8, N'正式', N'8', N'ai_write_tone', 0, N'', N'', N'', N'1', N'2024-07-07 15:54:33', N'1', N'2024-07-07 15:54:33', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1569, 5, N'段落', N'5', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:49:54', N'1', N'2024-07-07 15:49:54', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1570, 1, N'自动', N'1', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:19:34', N'1', N'2024-07-07 15:19:34', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1571, 2, N'电子邮件', N'2', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:19:50', N'1', N'2024-07-07 15:49:30', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1572, 3, N'消息', N'3', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:20:01', N'1', N'2024-07-07 15:49:38', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1573, 4, N'评论', N'4', N'ai_write_format', 0, N'', N'', N'', N'1', N'2024-07-07 15:20:13', N'1', N'2024-07-07 15:49:45', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1574, 1, N'自动', N'1', N'ai_write_language', 0, N'', N'', N'', N'1', N'2024-07-07 15:44:18', N'1', N'2024-07-07 15:44:18', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1575, 2, N'中文', N'2', N'ai_write_language', 0, N'', N'', N'', N'1', N'2024-07-07 15:44:28', N'1', N'2024-07-07 15:44:28', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1576, 3, N'英文', N'3', N'ai_write_language', 0, N'', N'', N'', N'1', N'2024-07-07 15:44:37', N'1', N'2024-07-07 15:44:37', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1577, 4, N'韩语', N'4', N'ai_write_language', 0, N'', N'', N'', N'1', N'2024-07-07 15:46:28', N'1', N'2024-07-07 15:46:28', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1578, 5, N'日语', N'5', N'ai_write_language', 0, N'', N'', N'', N'1', N'2024-07-07 15:46:44', N'1', N'2024-07-07 15:46:44', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1579, 1, N'自动', N'1', N'ai_write_length', 0, N'', N'', N'', N'1', N'2024-07-07 15:48:34', N'1', N'2024-07-07 15:48:34', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1580, 2, N'短', N'2', N'ai_write_length', 0, N'', N'', N'', N'1', N'2024-07-07 15:48:44', N'1', N'2024-07-07 15:48:44', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1581, 3, N'中等', N'3', N'ai_write_length', 0, N'', N'', N'', N'1', N'2024-07-07 15:48:52', N'1', N'2024-07-07 15:48:52', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1582, 4, N'长', N'4', N'ai_write_length', 0, N'', N'', N'', N'1', N'2024-07-07 15:49:03', N'1', N'2024-07-07 15:49:03', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1584, 1, N'撰写', N'1', N'ai_write_type', 0, N'', N'', N'', N'1', N'2024-07-10 21:26:00', N'1', N'2024-07-10 21:26:00', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1585, 2, N'回复', N'2', N'ai_write_type', 0, N'', N'', N'', N'1', N'2024-07-10 21:26:06', N'1', N'2024-07-10 21:26:06', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1586, 2, N'腾讯云', N'TENCENT', N'system_sms_channel_code', 0, N'', N'', N'', N'1', N'2024-07-22 22:23:16', N'1', N'2024-07-22 22:23:16', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1587, 3, N'华为云', N'HUAWEI', N'system_sms_channel_code', 0, N'', N'', N'', N'1', N'2024-07-22 22:23:46', N'1', N'2024-07-22 22:23:53', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1588, 1, N'OpenAI 微软', N'AzureOpenAI', N'ai_platform', 0, N'', N'', N'', N'1', N'2024-08-10 14:07:41', N'1', N'2024-08-10 14:07:41', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1589, 10, N'BPMN 设计器', N'10', N'bpm_model_type', 0, N'primary', N'', N'', N'1', N'2024-08-26 15:22:17', N'1', N'2024-08-26 16:46:02', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1590, 20, N'SIMPLE 设计器', N'20', N'bpm_model_type', 0, N'success', N'', N'', N'1', N'2024-08-26 15:22:27', N'1', N'2024-08-26 16:45:58', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1591, 4, N'七牛云', N'QINIU', N'system_sms_channel_code', 0, N'', N'', N'', N'1', N'2024-08-31 08:45:03', N'1', N'2024-08-31 08:45:24', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1592, 3, N'新人券', N'3', N'promotion_coupon_take_type', 0, N'info', N'', N'新人注册后，自动发放', N'1', N'2024-09-03 11:57:16', N'1', N'2024-09-03 11:57:28', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1593, 5, N'微信零钱', N'5', N'brokerage_withdraw_type', 0, N'', N'', N'API 打款', N'1', N'2024-10-13 11:06:48', N'1', N'2025-05-10 08:24:55', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1683, 10, N'字节豆包', N'DouBao', N'ai_platform', 0, N'', N'', N'', N'1', N'2025-02-23 19:51:40', N'1', N'2025-02-23 19:52:02', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1684, 11, N'腾讯混元', N'HunYuan', N'ai_platform', 0, N'', N'', N'', N'1', N'2025-02-23 20:58:04', N'1', N'2025-02-23 20:58:04', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1685, 12, N'硅基流动', N'SiliconFlow', N'ai_platform', 0, N'', N'', N'', N'1', N'2025-02-24 20:19:09', N'1', N'2025-02-24 20:19:09', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1686, 1, N'聊天', N'1', N'ai_model_type', 0, N'', N'', N'', N'1', N'2025-03-03 12:26:34', N'1', N'2025-03-03 12:26:34', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1687, 2, N'图像', N'2', N'ai_model_type', 0, N'', N'', N'', N'1', N'2025-03-03 12:27:23', N'1', N'2025-03-03 12:27:23', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1688, 3, N'音频', N'3', N'ai_model_type', 0, N'', N'', N'', N'1', N'2025-03-03 12:27:51', N'1', N'2025-03-03 12:27:51', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1689, 4, N'视频', N'4', N'ai_model_type', 0, N'', N'', N'', N'1', N'2025-03-03 12:28:03', N'1', N'2025-03-03 12:28:03', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1690, 5, N'向量', N'5', N'ai_model_type', 0, N'', N'', N'', N'1', N'2025-03-03 12:28:15', N'1', N'2025-03-03 12:28:15', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1691, 6, N'重排', N'6', N'ai_model_type', 0, N'', N'', N'', N'1', N'2025-03-03 12:28:26', N'1', N'2025-03-03 12:28:26', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1692, 14, N'MiniMax', N'MiniMax', N'ai_platform', 0, N'', N'', N'', N'1', N'2025-03-11 20:04:51', N'1', N'2025-03-11 20:04:51', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (1693, 15, N'月之暗面', N'Moonshot', N'ai_platform', 0, N'', N'', N'', N'1', N'2025-03-11 20:05:08', N'1', N'2025-03-11 20:05:08', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (2000, 0, N'标准数据格式（JSON）', N'0', N'iot_data_format', 0, N'default', N'', N'', N'1', N'2024-08-10 11:53:26', N'1', N'2025-03-17 09:28:16', N'0')
 GO
@@ -3293,13 +3160,10 @@ INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_t
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (2173, 32, N'KAFKA', N'32', N'iot_data_bridge_type_enum', 0, N'primary', N'', N'', N'1', N'2025-03-09 12:41:59', N'1', N'2025-03-17 09:40:46', N'0')
 GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (3000, 16, N'百川智能', N'BaiChuan', N'ai_platform', 0, N'', N'', N'', N'1', N'2025-03-23 12:15:46', N'1', N'2025-03-23 12:15:46', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (3001, 50, N'Vben5.0 Ant Design Schema 模版', N'40', N'infra_codegen_front_type', 0, N'', N'', NULL, N'1', N'2025-04-23 21:47:47', N'1', N'2025-05-02 12:01:15', N'0')
 GO
 INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (3002, 6, N'支付宝余额', N'6', N'brokerage_withdraw_type', 0, N'', N'', N'API 打款', N'1', N'2025-05-10 08:24:49', N'1', N'2025-05-10 08:24:49', N'0')
-GO
-INSERT INTO system_dict_data (id, sort, label, value, dict_type, status, color_type, css_class, remark, creator, create_time, updater, update_time, deleted) VALUES (3035, 40, N'支付宝小程序', N'40', N'system_social_type', 0, N'', N'', N'', N'1', N'2023-11-04 13:05:38', N'1', N'2023-11-04 13:07:16', N'0')
 GO
 SET IDENTITY_INSERT system_dict_data OFF
 GO
@@ -3443,13 +3307,9 @@ INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_ti
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (110, N'API 异常数据的处理状态', N'infra_api_error_log_process_status', 0, NULL, N'', N'2021-02-26 07:07:01', N'', N'2022-02-01 16:50:53', N'0', NULL)
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (111, N'短信渠道编码', N'system_sms_channel_code', 0, NULL, N'1', N'2021-04-05 01:04:50', N'1', N'2022-02-16 02:09:08', N'0', NULL)
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (112, N'短信模板的类型', N'system_sms_template_type', 0, NULL, N'1', N'2021-04-05 21:50:43', N'1', N'2022-02-01 16:35:06', N'0', NULL)
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (113, N'短信发送状态', N'system_sms_send_status', 0, NULL, N'1', N'2021-04-11 20:18:03', N'1', N'2022-02-01 16:35:09', N'0', NULL)
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (114, N'短信接收状态', N'system_sms_receive_status', 0, NULL, N'1', N'2021-04-11 20:27:14', N'1', N'2022-02-01 16:35:14', N'0', NULL)
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (116, N'登陆日志的类型', N'system_login_type', 0, N'登陆日志的类型', N'1', N'2021-10-06 00:50:46', N'1', N'2022-02-01 16:35:56', N'0', NULL)
 GO
@@ -3513,7 +3373,6 @@ INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_ti
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (165, N'公众号的消息类型', N'mp_message_type', 0, N'公众号的消息类型', N'1', N'2023-01-17 22:17:09', N'1', N'2023-01-17 22:17:09', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (166, N'邮件发送状态', N'system_mail_send_status', 0, N'邮件发送状态', N'1', N'2023-01-26 09:53:13', N'1', N'2023-01-26 09:53:13', N'0', N'1970-01-01 00:00:00')
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (167, N'站内信模版的类型', N'system_notify_template_type', 0, N'站内信模版的类型', N'1', N'2023-01-28 10:35:10', N'1', N'2023-01-28 10:35:10', N'0', N'1970-01-01 00:00:00')
 GO
@@ -3557,8 +3416,6 @@ INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_ti
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (600, N'Banner 位置', N'promotion_banner_position', 0, N'', N'1', N'2023-10-08 07:24:25', N'1', N'2023-11-04 13:04:02', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (601, N'社交类型', N'system_social_type', 0, N'', N'1', N'2023-11-04 13:03:54', N'1', N'2023-11-04 13:03:54', N'0', N'1970-01-01 00:00:00')
-GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (604, N'产品状态', N'crm_product_status', 0, N'', N'1', N'2023-10-30 21:47:59', N'1', N'2023-10-30 21:48:45', N'0', N'1970-01-01 00:00:00')
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (605, N'CRM 数据权限的级别', N'crm_permission_level', 0, N'', N'1', N'2023-11-30 09:51:59', N'1', N'2023-11-30 09:51:59', N'0', N'1970-01-01 00:00:00')
@@ -3583,27 +3440,17 @@ INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_ti
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (619, N'CRM 商机结束状态类型', N'crm_business_end_status_type', 0, N'', N'1', N'2024-04-13 23:23:00', N'1', N'2024-04-13 23:23:00', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (620, N'AI 模型平台', N'ai_platform', 0, N'', N'1', N'2024-05-09 22:27:38', N'1', N'2024-05-09 22:27:38', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (621, N'AI 绘画状态', N'ai_image_status', 0, N'', N'1', N'2024-06-26 20:51:23', N'1', N'2024-06-26 20:51:23', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (622, N'AI 音乐状态', N'ai_music_status', 0, N'', N'1', N'2024-06-27 22:45:07', N'1', N'2024-06-28 00:56:27', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (623, N'AI 音乐生成模式', N'ai_generate_mode', 0, N'', N'1', N'2024-06-27 22:46:21', N'1', N'2024-06-28 01:22:29', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (624, N'写作语气', N'ai_write_tone', 0, N'', N'1', N'2024-07-07 15:19:02', N'1', N'2024-07-07 15:19:02', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (625, N'写作语言', N'ai_write_language', 0, N'', N'1', N'2024-07-07 15:18:52', N'1', N'2024-07-07 15:18:52', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (626, N'写作长度', N'ai_write_length', 0, N'', N'1', N'2024-07-07 15:18:41', N'1', N'2024-07-07 15:18:41', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (627, N'写作格式', N'ai_write_format', 0, N'', N'1', N'2024-07-07 15:14:34', N'1', N'2024-07-07 15:14:34', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (628, N'AI 写作类型', N'ai_write_type', 0, N'', N'1', N'2024-07-10 21:25:29', N'1', N'2024-07-10 21:25:29', N'0', N'1970-01-01 00:00:00')
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (629, N'BPM 流程模型类型', N'bpm_model_type', 0, N'', N'1', N'2024-08-26 15:21:43', N'1', N'2024-08-26 15:21:43', N'0', N'1970-01-01 00:00:00')
 GO
-INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (640, N'AI 模型类型', N'ai_model_type', 0, N'', N'1', N'2025-03-03 12:24:07', N'1', N'2025-03-03 12:24:07', N'0', N'1970-01-01 00:00:00')
 GO
 INSERT INTO system_dict_type (id, name, type, status, remark, creator, create_time, updater, update_time, deleted, deleted_time) VALUES (1000, N'IoT 数据格式', N'iot_data_format', 0, N'', N'1', N'2024-08-10 11:52:58', N'1', N'2025-03-17 09:25:06', N'0', N'1970-01-01 00:00:00')
 GO
@@ -3659,9 +3506,7 @@ CREATE TABLE system_login_log
     create_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64) DEFAULT ''                NULL,
     update_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit          DEFAULT 0                 NOT NULL,
-    tenant_id   bigint       DEFAULT 0                 NOT NULL
-)
+    deleted     bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -3763,499 +3608,10 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_login_log',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'系统访问记录',
      'SCHEMA', N'dbo',
      'TABLE', N'system_login_log'
 GO
-
--- ----------------------------
--- Table structure for system_mail_account
--- ----------------------------
-DROP TABLE IF EXISTS system_mail_account
-GO
-CREATE TABLE system_mail_account
-(
-    id              bigint                                 NOT NULL PRIMARY KEY IDENTITY,
-    mail            nvarchar(255)                          NOT NULL,
-    username        nvarchar(255)                          NOT NULL,
-    password        nvarchar(255)                          NOT NULL,
-    host            nvarchar(255)                          NOT NULL,
-    port            int                                    NOT NULL,
-    ssl_enable      varchar(1)   DEFAULT '0'               NOT NULL,
-    starttls_enable varchar(1)   DEFAULT '0'               NOT NULL,
-    creator         nvarchar(64) DEFAULT ''                NULL,
-    create_time     datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater         nvarchar(64) DEFAULT ''                NULL,
-    update_time     datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted         bit          DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'主键',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮箱',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'mail'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户名',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'username'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'密码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'password'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'SMTP 服务器域名',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'host'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'SMTP 服务器端口',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'port'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否开启 SSL',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'ssl_enable'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否开启 STARTTLS',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'starttls_enable'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮箱账号表',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_account'
-GO
-
--- ----------------------------
--- Records of system_mail_account
--- ----------------------------
--- @formatter:off
-BEGIN TRANSACTION
-GO
-SET IDENTITY_INSERT system_mail_account ON
-GO
-INSERT INTO system_mail_account (id, mail, username, password, host, port, ssl_enable, starttls_enable, creator, create_time, updater, update_time, deleted) VALUES (1, N'7684413@qq.com', N'7684413@qq.com', N'1234576', N'127.0.0.1', 8080, N'0', N'0', N'1', N'2023-01-25 17:39:52', N'1', N'2025-04-04 16:34:40', N'0')
-GO
-INSERT INTO system_mail_account (id, mail, username, password, host, port, ssl_enable, starttls_enable, creator, create_time, updater, update_time, deleted) VALUES (2, N'ydym_test@163.com', N'ydym_test@163.com', N'WBZTEINMIFVRYSOE', N'smtp.163.com', 465, N'1', N'0', N'1', N'2023-01-26 01:26:03', N'1', N'2023-04-12 22:39:38', N'0')
-GO
-INSERT INTO system_mail_account (id, mail, username, password, host, port, ssl_enable, starttls_enable, creator, create_time, updater, update_time, deleted) VALUES (3, N'76854114@qq.com', N'3335', N'11234', N'yunai1.cn', 466, N'0', N'0', N'1', N'2023-01-27 15:06:38', N'1', N'2023-01-27 07:08:36', N'1')
-GO
-INSERT INTO system_mail_account (id, mail, username, password, host, port, ssl_enable, starttls_enable, creator, create_time, updater, update_time, deleted) VALUES (4, N'7685413x@qq.com', N'2', N'3', N'4', 5, N'1', N'0', N'1', N'2023-04-12 23:05:06', N'1', N'2023-04-12 15:05:11', N'1')
-GO
-SET IDENTITY_INSERT system_mail_account OFF
-GO
-COMMIT
-GO
--- @formatter:on
-
--- ----------------------------
--- Table structure for system_mail_log
--- ----------------------------
-DROP TABLE IF EXISTS system_mail_log
-GO
-CREATE TABLE system_mail_log
-(
-    id                bigint                                   NOT NULL PRIMARY KEY IDENTITY,
-    user_id           bigint         DEFAULT NULL              NULL,
-    user_type         tinyint        DEFAULT NULL              NULL,
-    to_mail           nvarchar(255)                            NOT NULL,
-    account_id        bigint                                   NOT NULL,
-    from_mail         nvarchar(255)                            NOT NULL,
-    template_id       bigint                                   NOT NULL,
-    template_code     nvarchar(63)                             NOT NULL,
-    template_nickname nvarchar(255)  DEFAULT NULL              NULL,
-    template_title    nvarchar(255)                            NOT NULL,
-    template_content  nvarchar(4000)                           NOT NULL,
-    template_params   nvarchar(255)                            NOT NULL,
-    send_status       tinyint        DEFAULT 0                 NOT NULL,
-    send_time         datetime2      DEFAULT NULL              NULL,
-    send_message_id   nvarchar(255)  DEFAULT NULL              NULL,
-    send_exception    nvarchar(4000) DEFAULT NULL              NULL,
-    creator           nvarchar(64)   DEFAULT ''                NULL,
-    create_time       datetime2      DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater           nvarchar(64)   DEFAULT ''                NULL,
-    update_time       datetime2      DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted           bit            DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'user_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'user_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'接收邮箱地址',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'to_mail'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮箱账号编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'account_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送邮箱地址',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'from_mail'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'template_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'template_code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模版发送人名称',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'template_nickname'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮件标题',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'template_title'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮件内容',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'template_content'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮件参数',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'template_params'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'send_status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'send_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送返回的消息 ID',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'send_message_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送异常',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'send_exception'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮件日志表',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_log'
-GO
-
--- ----------------------------
--- Table structure for system_mail_template
--- ----------------------------
-DROP TABLE IF EXISTS system_mail_template
-GO
-CREATE TABLE system_mail_template
-(
-    id          bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    name        nvarchar(63)                            NOT NULL,
-    code        nvarchar(63)                            NOT NULL,
-    account_id  bigint                                  NOT NULL,
-    nickname    nvarchar(255) DEFAULT NULL              NULL,
-    title       nvarchar(255)                           NOT NULL,
-    content     nvarchar(4000)                          NOT NULL,
-    params      nvarchar(255)                           NOT NULL,
-    status      tinyint                                 NOT NULL,
-    remark      nvarchar(255) DEFAULT NULL              NULL,
-    creator     nvarchar(64)  DEFAULT ''                NULL,
-    create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater     nvarchar(64)  DEFAULT ''                NULL,
-    update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板名称',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'name'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送的邮箱账号编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'account_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送人名称',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'nickname'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板标题',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'title'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板内容',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'content'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'参数数组',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'params'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'开启状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'备注',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'remark'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'邮件模版表',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_mail_template'
-GO
-
--- ----------------------------
--- Records of system_mail_template
--- ----------------------------
--- @formatter:off
-BEGIN TRANSACTION
-GO
-SET IDENTITY_INSERT system_mail_template ON
-GO
-INSERT INTO system_mail_template (id, name, code, account_id, nickname, title, content, params, status, remark, creator, create_time, updater, update_time, deleted) VALUES (13, N'后台用户短信登录', N'admin-sms-login', 1, N'奥特曼', N'你猜我猜', N'<p>您的验证码是{code}，名字是{name}</p>', N'["code","name"]', 0, N'3', N'1', N'2021-10-11 08:10:00', N'1', N'2023-12-02 19:51:14', N'0')
-GO
-INSERT INTO system_mail_template (id, name, code, account_id, nickname, title, content, params, status, remark, creator, create_time, updater, update_time, deleted) VALUES (14, N'测试模版', N'test_01', 2, N'芋艿', N'一个标题', N'<p>你是 {key01} 吗？</p><p><br></p><p>是的话，赶紧 {key02} 一下！</p>', N'["key01","key02"]', 0, NULL, N'1', N'2023-01-26 01:27:40', N'1', N'2023-01-27 10:32:16', N'0')
-GO
-INSERT INTO system_mail_template (id, name, code, account_id, nickname, title, content, params, status, remark, creator, create_time, updater, update_time, deleted) VALUES (15, N'3', N'2', 2, N'7', N'4', N'<p>45</p>', N'[]', 1, N'80', N'1', N'2023-01-27 15:50:35', N'1', N'2023-01-27 16:34:49', N'0')
-GO
-SET IDENTITY_INSERT system_mail_template OFF
-GO
-COMMIT
-GO
--- @formatter:on
 
 -- ----------------------------
 -- Table structure for system_menu
@@ -4436,8 +3792,6 @@ GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1, N'系统管理', N'', 1, 10, 0, N'/system', N'ep:tools', NULL, NULL, 0, N'1', N'1', N'1', N'admin', N'2021-01-05 17:03:48', N'1', N'2025-03-15 21:30:27', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2, N'基础设施', N'', 1, 20, 0, N'/infra', N'ep:monitor', NULL, NULL, 0, N'1', N'1', N'1', N'admin', N'2021-01-05 17:03:48', N'1', N'2024-03-01 08:28:40', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (5, N'OA 示例', N'', 1, 40, 1185, N'oa', N'fa:road', NULL, NULL, 0, N'1', N'1', N'1', N'admin', N'2021-09-20 16:26:19', N'1', N'2024-02-29 12:38:13', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (100, N'用户管理', N'system:user:list', 2, 1, 1, N'user', N'ep:avatar', N'system/user/index', N'SystemUser', 0, N'1', N'1', N'1', N'admin', N'2021-01-05 17:03:48', N'1', N'2025-03-15 21:30:41', N'0')
 GO
@@ -4627,45 +3981,7 @@ INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1092, N'文件删除', N'infra:file:delete', 3, 4, 1090, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-03-12 20:16:20', N'', N'2022-04-20 17:03:10', N'0')
 GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1093, N'短信管理', N'', 1, 1, 2739, N'sms', N'ep:message', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2021-04-05 01:10:16', N'1', N'2024-04-22 23:56:03', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1094, N'短信渠道', N'', 2, 0, 1093, N'sms-channel', N'fa:stack-exchange', N'system/sms/channel/index', N'SystemSmsChannel', 0, N'1', N'1', N'1', N'', N'2021-04-01 11:07:15', N'1', N'2024-02-29 01:15:54', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1095, N'短信渠道查询', N'system:sms-channel:query', 3, 1, 1094, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 11:07:15', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1096, N'短信渠道创建', N'system:sms-channel:create', 3, 2, 1094, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 11:07:15', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1097, N'短信渠道更新', N'system:sms-channel:update', 3, 3, 1094, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 11:07:15', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1098, N'短信渠道删除', N'system:sms-channel:delete', 3, 4, 1094, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 11:07:15', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1100, N'短信模板', N'', 2, 1, 1093, N'sms-template', N'ep:connection', N'system/sms/template/index', N'SystemSmsTemplate', 0, N'1', N'1', N'1', N'', N'2021-04-01 17:35:17', N'1', N'2024-02-29 01:16:18', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1101, N'短信模板查询', N'system:sms-template:query', 3, 1, 1100, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 17:35:17', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1102, N'短信模板创建', N'system:sms-template:create', 3, 2, 1100, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 17:35:17', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1103, N'短信模板更新', N'system:sms-template:update', 3, 3, 1100, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 17:35:17', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1104, N'短信模板删除', N'system:sms-template:delete', 3, 4, 1100, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 17:35:17', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1105, N'短信模板导出', N'system:sms-template:export', 3, 5, 1100, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-01 17:35:17', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1106, N'发送测试短信', N'system:sms-template:send-sms', 3, 6, 1100, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2021-04-11 00:26:40', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1107, N'短信日志', N'', 2, 2, 1093, N'sms-log', N'fa:edit', N'system/sms/log/index', N'SystemSmsLog', 0, N'1', N'1', N'1', N'', N'2021-04-11 08:37:05', N'1', N'2024-02-29 08:49:02', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1108, N'短信日志查询', N'system:sms-log:query', 3, 1, 1107, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-11 08:37:05', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1109, N'短信日志导出', N'system:sms-log:export', 3, 5, 1107, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-04-11 08:37:05', N'', N'2022-04-20 17:03:10', N'0')
-GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1117, N'支付管理', N'', 1, 30, 0, N'/pay', N'ep:money', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2021-12-25 16:43:41', N'1', N'2024-02-29 08:58:38', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1118, N'请假查询', N'', 2, 0, 5, N'leave', N'fa:leanpub', N'bpm/oa/leave/index', N'BpmOALeave', 0, N'1', N'1', N'1', N'', N'2021-09-20 08:51:03', N'1', N'2024-02-29 12:38:21', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1119, N'请假申请查询', N'bpm:oa-leave:query', 3, 1, 1118, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-09-20 08:51:03', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1120, N'请假申请创建', N'bpm:oa-leave:create', 3, 2, 1118, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-09-20 08:51:03', N'1', N'2022-04-20 17:03:10', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1126, N'应用信息', N'', 2, 1, 1117, N'app', N'fa:apple', N'pay/app/index', N'PayApp', 0, N'1', N'1', N'1', N'', N'2021-11-10 01:13:30', N'1', N'2024-02-29 08:59:55', N'0')
 GO
@@ -4714,70 +4030,6 @@ GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1174, N'支付订单查询', N'pay:order:query', 3, 1, 1173, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-25 08:49:43', N'', N'2022-04-20 17:03:10', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1178, N'支付订单导出', N'pay:order:export', 3, 5, 1173, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-25 08:49:43', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1185, N'工作流程', N'', 1, 50, 0, N'/bpm', N'fa:medium', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2021-12-30 20:26:36', N'1', N'2024-02-29 12:43:43', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1186, N'流程管理', N'', 1, 10, 1185, N'manager', N'fa:dedent', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2021-12-30 20:28:30', N'1', N'2024-02-29 12:36:02', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1187, N'流程表单', N'', 2, 2, 1186, N'form', N'fa:hdd-o', N'bpm/form/index', N'BpmForm', 0, N'1', N'1', N'1', N'', N'2021-12-30 12:38:22', N'1', N'2024-03-19 12:25:25', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1188, N'表单查询', N'bpm:form:query', 3, 1, 1187, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-30 12:38:22', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1189, N'表单创建', N'bpm:form:create', 3, 2, 1187, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-30 12:38:22', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1190, N'表单更新', N'bpm:form:update', 3, 3, 1187, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-30 12:38:22', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1191, N'表单删除', N'bpm:form:delete', 3, 4, 1187, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-30 12:38:22', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1192, N'表单导出', N'bpm:form:export', 3, 5, 1187, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2021-12-30 12:38:22', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1193, N'流程模型', N'', 2, 1, 1186, N'model', N'fa-solid:project-diagram', N'bpm/model/index', N'BpmModel', 0, N'1', N'1', N'1', N'1', N'2021-12-31 23:24:58', N'1', N'2024-03-19 12:25:19', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1194, N'模型查询', N'bpm:model:query', 3, 1, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-03 19:01:10', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1195, N'模型创建', N'bpm:model:create', 3, 2, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-03 19:01:24', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1197, N'模型更新', N'bpm:model:update', 3, 4, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-03 19:02:28', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1198, N'模型删除', N'bpm:model:delete', 3, 5, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-03 19:02:43', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1199, N'模型发布', N'bpm:model:deploy', 3, 6, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-03 19:03:24', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1200, N'审批中心', N'', 2, 20, 1185, N'task', N'fa:tasks', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-07 23:51:48', N'1', N'2024-03-21 00:33:15', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1201, N'我的流程', N'', 2, 1, 1200, N'my', N'fa-solid:book', N'bpm/processInstance/index', N'BpmProcessInstanceMy', 0, N'1', N'1', N'1', N'', N'2022-01-07 15:53:44', N'1', N'2024-03-21 23:52:12', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1202, N'流程实例的查询', N'bpm:process-instance:query', 3, 1, 1201, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2022-01-07 15:53:44', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1207, N'待办任务', N'', 2, 10, 1200, N'todo', N'fa:slack', N'bpm/task/todo/index', N'BpmTodoTask', 0, N'1', N'1', N'1', N'1', N'2022-01-08 10:33:37', N'1', N'2024-02-29 12:37:39', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1208, N'已办任务', N'', 2, 20, 1200, N'done', N'fa:delicious', N'bpm/task/done/index', N'BpmDoneTask', 0, N'1', N'1', N'1', N'1', N'2022-01-08 10:34:13', N'1', N'2024-02-29 12:37:54', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1209, N'用户分组', N'', 2, 4, 1186, N'user-group', N'fa:user-secret', N'bpm/group/index', N'BpmUserGroup', 0, N'1', N'1', N'1', N'', N'2022-01-14 02:14:20', N'1', N'2024-03-21 23:55:29', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1210, N'用户组查询', N'bpm:user-group:query', 3, 1, 1209, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2022-01-14 02:14:20', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1211, N'用户组创建', N'bpm:user-group:create', 3, 2, 1209, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2022-01-14 02:14:20', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1212, N'用户组更新', N'bpm:user-group:update', 3, 3, 1209, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2022-01-14 02:14:20', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1213, N'用户组删除', N'bpm:user-group:delete', 3, 4, 1209, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2022-01-14 02:14:20', N'', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1215, N'流程定义查询', N'bpm:process-definition:query', 3, 10, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:21:43', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1216, N'流程任务分配规则查询', N'bpm:task-assign-rule:query', 3, 20, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:26:53', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1217, N'流程任务分配规则创建', N'bpm:task-assign-rule:create', 3, 21, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:28:15', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1218, N'流程任务分配规则更新', N'bpm:task-assign-rule:update', 3, 22, 1193, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:28:41', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1219, N'流程实例的创建', N'bpm:process-instance:create', 3, 2, 1201, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:36:15', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1220, N'流程实例的取消', N'bpm:process-instance:cancel', 3, 3, 1201, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:36:33', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1221, N'流程任务的查询', N'bpm:task:query', 3, 1, 1207, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:38:52', N'1', N'2022-04-20 17:03:10', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1222, N'流程任务的更新', N'bpm:task:update', 3, 2, 1207, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2022-01-23 00:39:24', N'1', N'2022-04-20 17:03:10', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (1224, N'租户管理', N'', 2, 0, 1, N'tenant', N'fa-solid:house-user', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2022-02-20 01:41:13', N'1', N'2024-02-29 00:59:29', N'0')
 GO
@@ -5052,34 +4304,6 @@ GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2128, N'查询消息', N'mp:message:query', 3, 0, 2103, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2023-01-17 23:07:14', N'1', N'2023-01-17 23:07:14', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2129, N'发送消息', N'mp:message:send', 3, 1, 2103, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2023-01-17 23:07:26', N'1', N'2023-01-17 23:07:26', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2130, N'邮箱管理', N'', 2, 2, 2739, N'mail', N'fa-solid:mail-bulk', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2023-01-25 17:27:44', N'1', N'2024-04-22 23:56:08', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2131, N'邮箱账号', N'', 2, 0, 2130, N'mail-account', N'fa:universal-access', N'system/mail/account/index', N'SystemMailAccount', 0, N'1', N'1', N'1', N'', N'2023-01-25 09:33:48', N'1', N'2024-02-29 08:48:16', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2132, N'账号查询', N'system:mail-account:query', 3, 1, 2131, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 09:33:48', N'', N'2023-01-25 09:33:48', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2133, N'账号创建', N'system:mail-account:create', 3, 2, 2131, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 09:33:48', N'', N'2023-01-25 09:33:48', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2134, N'账号更新', N'system:mail-account:update', 3, 3, 2131, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 09:33:48', N'', N'2023-01-25 09:33:48', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2135, N'账号删除', N'system:mail-account:delete', 3, 4, 2131, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 09:33:48', N'', N'2023-01-25 09:33:48', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2136, N'邮件模版', N'', 2, 0, 2130, N'mail-template', N'fa:tag', N'system/mail/template/index', N'SystemMailTemplate', 0, N'1', N'1', N'1', N'', N'2023-01-25 12:05:31', N'1', N'2024-02-29 08:48:41', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2137, N'模版查询', N'system:mail-template:query', 3, 1, 2136, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 12:05:31', N'', N'2023-01-25 12:05:31', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2138, N'模版创建', N'system:mail-template:create', 3, 2, 2136, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 12:05:31', N'', N'2023-01-25 12:05:31', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2139, N'模版更新', N'system:mail-template:update', 3, 3, 2136, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 12:05:31', N'', N'2023-01-25 12:05:31', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2140, N'模版删除', N'system:mail-template:delete', 3, 4, 2136, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-25 12:05:31', N'', N'2023-01-25 12:05:31', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2141, N'邮件记录', N'', 2, 0, 2130, N'mail-log', N'fa:edit', N'system/mail/log/index', N'SystemMailLog', 0, N'1', N'1', N'1', N'', N'2023-01-26 02:16:50', N'1', N'2024-02-29 08:48:51', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2142, N'日志查询', N'system:mail-log:query', 3, 1, 2141, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2023-01-26 02:16:50', N'', N'2023-01-26 02:16:50', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2143, N'发送测试邮件', N'system:mail-template:send-mail', 3, 5, 2136, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'1', N'2023-01-26 23:29:15', N'1', N'2023-01-26 23:29:15', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2144, N'站内信管理', N'', 1, 3, 2739, N'notify', N'ep:message-box', NULL, NULL, 0, N'1', N'1', N'1', N'1', N'2023-01-28 10:25:18', N'1', N'2024-04-22 23:56:12', N'0')
 GO
@@ -5911,50 +5135,6 @@ INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2712, N'客户分析', N'crm:statistics-customer:query', 2, 0, 2560, N'customer', N'ep:avatar', N'crm/statistics/customer/index.vue', N'CrmStatisticsCustomer', 0, N'1', N'1', N'1', N'1', N'2024-03-09 16:43:56', N'1', N'2024-05-04 20:38:50', N'0')
 GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2713, N'抄送我的', N'bpm:process-instance-cc:query', 2, 30, 1200, N'copy', N'ep:copy-document', N'bpm/task/copy/index', N'BpmProcessInstanceCopy', 0, N'1', N'1', N'1', N'1', N'2024-03-17 21:50:23', N'1', N'2024-04-24 19:55:12', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2714, N'流程分类', N'', 2, 3, 1186, N'category', N'fa:object-ungroup', N'bpm/category/index', N'BpmCategory', 0, N'1', N'1', N'1', N'', N'2024-03-08 02:00:51', N'1', N'2024-03-21 23:51:18', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2715, N'分类查询', N'bpm:category:query', 3, 1, 2714, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'', N'2024-03-08 02:00:51', N'1', N'2024-03-19 14:36:25', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2716, N'分类创建', N'bpm:category:create', 3, 2, 2714, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'', N'2024-03-08 02:00:51', N'1', N'2024-03-19 14:36:31', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2717, N'分类更新', N'bpm:category:update', 3, 3, 2714, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'', N'2024-03-08 02:00:51', N'1', N'2024-03-19 14:36:35', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2718, N'分类删除', N'bpm:category:delete', 3, 4, 2714, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'', N'2024-03-08 02:00:51', N'1', N'2024-03-19 14:36:41', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2720, N'发起流程', N'', 2, 0, 1200, N'create', N'fa-solid:grin-stars', N'bpm/processInstance/create/index', N'BpmProcessInstanceCreate', 0, N'1', N'0', N'1', N'1', N'2024-03-19 19:46:05', N'1', N'2024-03-23 19:03:42', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2721, N'流程实例', N'', 2, 10, 1186, N'process-instance/manager', N'fa:square', N'bpm/processInstance/manager/index', N'BpmProcessInstanceManager', 0, N'1', N'1', N'1', N'1', N'2024-03-21 23:57:30', N'1', N'2024-03-21 23:57:30', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2722, N'流程实例的查询（管理员）', N'bpm:process-instance:manager-query', 3, 1, 2721, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'1', N'2024-03-22 08:18:27', N'1', N'2024-03-22 08:19:05', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2723, N'流程实例的取消（管理员）', N'bpm:process-instance:cancel-by-admin', 3, 2, 2721, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'1', N'2024-03-22 08:19:25', N'1', N'2024-03-22 08:19:25', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2724, N'流程任务', N'', 2, 11, 1186, N'process-tasnk', N'ep:collection-tag', N'bpm/task/manager/index', N'BpmManagerTask', 0, N'1', N'1', N'1', N'1', N'2024-03-22 08:43:22', N'1', N'2024-03-22 08:43:27', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2725, N'流程任务的查询（管理员）', N'bpm:task:mananger-query', 3, 1, 2724, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'1', N'2024-03-22 08:43:49', N'1', N'2024-03-22 08:43:49', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2726, N'流程监听器', N'', 2, 5, 1186, N'process-listener', N'fa:assistive-listening-systems', N'bpm/processListener/index', N'BpmProcessListener', 0, N'1', N'1', N'1', N'', N'2024-03-09 16:05:34', N'1', N'2024-03-23 13:13:38', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2727, N'流程监听器查询', N'bpm:process-listener:query', 3, 1, 2726, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 16:05:34', N'', N'2024-03-09 16:05:34', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2728, N'流程监听器创建', N'bpm:process-listener:create', 3, 2, 2726, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 16:05:34', N'', N'2024-03-09 16:05:34', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2729, N'流程监听器更新', N'bpm:process-listener:update', 3, 3, 2726, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 16:05:34', N'', N'2024-03-09 16:05:34', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2730, N'流程监听器删除', N'bpm:process-listener:delete', 3, 4, 2726, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 16:05:34', N'', N'2024-03-09 16:05:34', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2731, N'流程表达式', N'', 2, 6, 1186, N'process-expression', N'fa:wpexplorer', N'bpm/processExpression/index', N'BpmProcessExpression', 0, N'1', N'1', N'1', N'', N'2024-03-09 22:35:08', N'1', N'2024-03-23 19:43:05', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2732, N'流程表达式查询', N'bpm:process-expression:query', 3, 1, 2731, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 22:35:08', N'', N'2024-03-09 22:35:08', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2733, N'流程表达式创建', N'bpm:process-expression:create', 3, 2, 2731, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 22:35:08', N'', N'2024-03-09 22:35:08', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2734, N'流程表达式更新', N'bpm:process-expression:update', 3, 3, 2731, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 22:35:08', N'', N'2024-03-09 22:35:08', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2735, N'流程表达式删除', N'bpm:process-expression:delete', 3, 4, 2731, N'', N'', N'', NULL, 0, N'1', N'1', N'1', N'', N'2024-03-09 22:35:08', N'', N'2024-03-09 22:35:08', N'0')
-GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2736, N'员工业绩', N'crm:statistics-performance:query', 2, 3, 2560, N'performance', N'ep:dish-dot', N'crm/statistics/performance/index', N'CrmStatisticsPerformance', 0, N'1', N'1', N'1', N'1', N'2024-04-05 13:49:20', N'1', N'2024-04-24 19:42:43', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2737, N'客户画像', N'crm:statistics-portrait:query', 2, 4, 2560, N'portrait', N'ep:picture', N'crm/statistics/portrait/index', N'CrmStatisticsPortrait', 0, N'1', N'1', N'1', N'1', N'2024-04-05 13:57:40', N'1', N'2024-04-24 19:42:24', N'0')
@@ -6108,8 +5288,6 @@ GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2813, N'积分商城活动导出', N'promotion:point-activity:export', 3, 5, 2808, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'', N'2024-09-21 05:36:42', N'1', N'2024-09-22 14:49:27', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2912, N'创建推广员', N'trade:brokerage-user:create', 3, 7, 2346, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'1', N'2024-12-01 14:32:39', N'1', N'2024-12-01 14:32:39', N'0')
-GO
-INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2913, N'流程清理', N'bpm:model:clean', 3, 7, 1193, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'1', N'2025-01-17 19:32:06', N'1', N'2025-01-17 19:32:06', N'0')
 GO
 INSERT INTO system_menu (id, name, permission, type, sort, parent_id, path, icon, component, component_name, status, visible, keep_alive, always_show, creator, create_time, updater, update_time, deleted) VALUES (2914, N'积分商城活动关闭', N'promotion:point-activity:close', 3, 6, 2808, N'', N'', N'', N'', 0, N'1', N'1', N'1', N'1', N'2025-01-23 20:23:34', N'1', N'2025-01-23 20:23:34', N'0')
 GO
@@ -6277,9 +5455,7 @@ CREATE TABLE system_notice
     create_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64) DEFAULT ''                NULL,
     update_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit          DEFAULT 0                 NOT NULL,
-    tenant_id   bigint       DEFAULT 0                 NOT NULL
-)
+    deleted     bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -6353,13 +5529,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_notice',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'通知公告表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_notice'
@@ -6373,12 +5542,9 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_notice ON
 GO
-INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'芋道的公众', N'<p>新版本内容133</p>', 1, 0, N'admin', N'2021-01-05 17:03:48', N'1', N'2022-05-04 21:00:20', N'0', 1)
-GO
-INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'维护通知：2018-07-01 系统凌晨维护', N'<p><img src="http://test.yudao.iocoder.cn/b7cb3cf49b4b3258bf7309a09dd2f4e5.jpg" alt="" data-href="">11112222<img src="http://test.yudao.iocoder.cn/fe44fc7bdb82ca421184b2eebbaee9e2148d4a1827479a4eb4521e11d2a062ba.png" alt="image" data-href="http://test.yudao.iocoder.cn/fe44fc7bdb82ca421184b2eebbaee9e2148d4a1827479a4eb4521e11d2a062ba.png">3333</p>', 2, 1, N'admin', N'2021-01-05 17:03:48', N'1', N'2025-04-18 23:56:40', N'0', 1)
-GO
-INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4, N'我是测试标题', N'<p>哈哈哈哈123</p>', 1, 0, N'110', N'2022-02-22 01:01:25', N'110', N'2022-02-22 01:01:46', N'0', 121)
-GO
+INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted) VALUES (1, N'芋道的公众', N'<p>新版本内容133</p>', 1, 0, N'admin', N'2021-01-05 17:03:48', N'1', N'2022-05-04 21:00:20', N'0')GO
+INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted) VALUES (2, N'维护通知：2018-07-01 系统凌晨维护', N'<p><img src="http://test.yudao.iocoder.cn/b7cb3cf49b4b3258bf7309a09dd2f4e5.jpg" alt="" data-href="">11112222<img src="http://test.yudao.iocoder.cn/fe44fc7bdb82ca421184b2eebbaee9e2148d4a1827479a4eb4521e11d2a062ba.png" alt="image" data-href="http://test.yudao.iocoder.cn/fe44fc7bdb82ca421184b2eebbaee9e2148d4a1827479a4eb4521e11d2a062ba.png">3333</p>', 2, 1, N'admin', N'2021-01-05 17:03:48', N'1', N'2025-04-18 23:56:40', N'0')GO
+INSERT INTO system_notice (id, title, content, type, status, creator, create_time, updater, update_time, deleted) VALUES (4, N'我是测试标题', N'<p>哈哈哈哈123</p>', 1, 0, N'110', N'2022-02-22 01:01:25', N'110', N'2022-02-22 01:01:46', N'0')GO
 SET IDENTITY_INSERT system_notice OFF
 GO
 COMMIT
@@ -6407,9 +5573,7 @@ CREATE TABLE system_notify_message
     create_time       datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater           nvarchar(64) DEFAULT ''                NULL,
     update_time       datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted           bit          DEFAULT 0                 NOT NULL,
-    tenant_id         bigint       DEFAULT 0                 NOT NULL
-)
+    deleted           bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -6525,13 +5689,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_notify_message',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'站内信消息表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_notify_message'
@@ -6545,24 +5702,15 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_notify_message ON
 GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, 1, 2, 1, N'test', N'123', N'我是 1，我开始 2 了', 1, N'{"name":"1","what":"2"}', N'1', N'2025-04-21 14:59:37', N'1', N'2023-01-28 11:44:08', N'1', N'2025-04-21 14:59:37', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3, 1, 2, 1, N'test', N'123', N'我是 1，我开始 2 了', 1, N'{"name":"1","what":"2"}', N'1', N'2025-04-21 14:59:37', N'1', N'2023-01-28 11:45:04', N'1', N'2025-04-21 14:59:37', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4, 103, 2, 2, N'register', N'系统消息', N'你好，欢迎 哈哈 加入大家庭！', 2, N'{"name":"哈哈"}', N'0', NULL, N'1', N'2023-01-28 21:02:20', N'1', N'2023-01-28 21:02:20', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5, 1, 2, 1, N'test', N'123', N'我是 芋艿，我开始 写代码 了', 1, N'{"name":"芋艿","what":"写代码"}', N'1', N'2025-04-21 14:59:37', N'1', N'2023-01-28 22:21:42', N'1', N'2025-04-21 14:59:37', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6, 1, 2, 1, N'test', N'123', N'我是 芋艿，我开始 写代码 了', 1, N'{"name":"芋艿","what":"写代码"}', N'1', N'2025-04-21 14:59:36', N'1', N'2023-01-28 22:22:07', N'1', N'2025-04-21 14:59:36', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (7, 1, 2, 1, N'test', N'123', N'我是 2，我开始 3 了', 1, N'{"name":"2","what":"3"}', N'1', N'2025-04-21 14:59:35', N'1', N'2023-01-28 23:45:21', N'1', N'2025-04-21 14:59:35', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (8, 1, 2, 2, N'register', N'系统消息', N'你好，欢迎 123 加入大家庭！', 2, N'{"name":"123"}', N'1', N'2025-04-21 14:59:35', N'1', N'2023-01-28 23:50:21', N'1', N'2025-04-21 14:59:35', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (9, 247, 1, 4, N'brokerage_withdraw_audit_approve', N'system', N'您在2023-09-28 08:35:46提现￥0.09元的申请已通过审核', 2, N'{"reason":null,"createTime":"2023-09-28 08:35:46","price":"0.09"}', N'0', NULL, N'1', N'2023-09-28 16:36:22', N'1', N'2023-09-28 16:36:22', N'0', 1)
-GO
-INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (10, 247, 1, 4, N'brokerage_withdraw_audit_approve', N'system', N'您在2023-09-30 20:59:40提现￥1.00元的申请已通过审核', 2, N'{"reason":null,"createTime":"2023-09-30 20:59:40","price":"1.00"}', N'0', NULL, N'1', N'2023-10-03 12:11:34', N'1', N'2023-10-03 12:11:34', N'0', 1)
-GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (2, 1, 2, 1, N'test', N'123', N'我是 1，我开始 2 了', 1, N'{"name":"1","what":"2"}', N'1', N'2025-04-21 14:59:37', N'1', N'2023-01-28 11:44:08', N'1', N'2025-04-21 14:59:37', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (3, 1, 2, 1, N'test', N'123', N'我是 1，我开始 2 了', 1, N'{"name":"1","what":"2"}', N'1', N'2025-04-21 14:59:37', N'1', N'2023-01-28 11:45:04', N'1', N'2025-04-21 14:59:37', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (4, 103, 2, 2, N'register', N'系统消息', N'你好，欢迎 哈哈 加入大家庭！', 2, N'{"name":"哈哈"}', N'0', NULL, N'1', N'2023-01-28 21:02:20', N'1', N'2023-01-28 21:02:20', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (5, 1, 2, 1, N'test', N'123', N'我是 芋艿，我开始 写代码 了', 1, N'{"name":"芋艿","what":"写代码"}', N'1', N'2025-04-21 14:59:37', N'1', N'2023-01-28 22:21:42', N'1', N'2025-04-21 14:59:37', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (6, 1, 2, 1, N'test', N'123', N'我是 芋艿，我开始 写代码 了', 1, N'{"name":"芋艿","what":"写代码"}', N'1', N'2025-04-21 14:59:36', N'1', N'2023-01-28 22:22:07', N'1', N'2025-04-21 14:59:36', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (7, 1, 2, 1, N'test', N'123', N'我是 2，我开始 3 了', 1, N'{"name":"2","what":"3"}', N'1', N'2025-04-21 14:59:35', N'1', N'2023-01-28 23:45:21', N'1', N'2025-04-21 14:59:35', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (8, 1, 2, 2, N'register', N'系统消息', N'你好，欢迎 123 加入大家庭！', 2, N'{"name":"123"}', N'1', N'2025-04-21 14:59:35', N'1', N'2023-01-28 23:50:21', N'1', N'2025-04-21 14:59:35', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (9, 247, 1, 4, N'brokerage_withdraw_audit_approve', N'system', N'您在2023-09-28 08:35:46提现￥0.09元的申请已通过审核', 2, N'{"reason":null,"createTime":"2023-09-28 08:35:46","price":"0.09"}', N'0', NULL, N'1', N'2023-09-28 16:36:22', N'1', N'2023-09-28 16:36:22', N'0')GO
+INSERT INTO system_notify_message (id, user_id, user_type, template_id, template_code, template_nickname, template_content, template_type, template_params, read_status, read_time, creator, create_time, updater, update_time, deleted) VALUES (10, 247, 1, 4, N'brokerage_withdraw_audit_approve', N'system', N'您在2023-09-30 20:59:40提现￥1.00元的申请已通过审核', 2, N'{"reason":null,"createTime":"2023-09-30 20:59:40","price":"1.00"}', N'0', NULL, N'1', N'2023-10-03 12:11:34', N'1', N'2023-10-03 12:11:34', N'0')GO
 SET IDENTITY_INSERT system_notify_message OFF
 GO
 COMMIT
@@ -6717,9 +5865,7 @@ CREATE TABLE system_oauth2_access_token
     create_time   datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater       nvarchar(64)  DEFAULT ''                NULL,
     update_time   datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted       bit           DEFAULT 0                 NOT NULL,
-    tenant_id     bigint        DEFAULT 0                 NOT NULL
-)
+    deleted       bit           DEFAULT 0                 NOT NULL)
 GO
 
 CREATE INDEX idx_system_oauth2_access_token_01 ON system_oauth2_access_token (access_token)
@@ -6826,13 +5972,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_oauth2_access_token',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'OAuth2 访问令牌',
      'SCHEMA', N'dbo',
      'TABLE', N'system_oauth2_access_token'
@@ -6856,9 +5995,7 @@ CREATE TABLE system_oauth2_approve
     create_time  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater      nvarchar(64)  DEFAULT ''                NULL,
     update_time  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted      bit           DEFAULT 0                 NOT NULL,
-    tenant_id    bigint        DEFAULT 0                 NOT NULL
-)
+    deleted      bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -6943,13 +6080,6 @@ EXEC sp_addextendedproperty
      'SCHEMA', N'dbo',
      'TABLE', N'system_oauth2_approve',
      'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_oauth2_approve',
-     'COLUMN', N'tenant_id'
 GO
 
 EXEC sp_addextendedproperty
@@ -7184,9 +6314,7 @@ CREATE TABLE system_oauth2_code
     create_time  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater      nvarchar(64)  DEFAULT ''                NULL,
     update_time  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted      bit           DEFAULT 0                 NOT NULL,
-    tenant_id    bigint        DEFAULT 0                 NOT NULL
-)
+    deleted      bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -7288,13 +6416,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_oauth2_code',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'OAuth2 授权码表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_oauth2_code'
@@ -7318,9 +6439,7 @@ CREATE TABLE system_oauth2_refresh_token
     create_time   datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater       nvarchar(64)  DEFAULT ''                NULL,
     update_time   datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted       bit           DEFAULT 0                 NOT NULL,
-    tenant_id     bigint        DEFAULT 0                 NOT NULL
-)
+    deleted       bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -7408,13 +6527,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_oauth2_refresh_token',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'OAuth2 刷新令牌',
      'SCHEMA', N'dbo',
      'TABLE', N'system_oauth2_refresh_token'
@@ -7445,9 +6557,7 @@ CREATE TABLE system_operate_log
     create_time    datetime2      DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater        nvarchar(64)   DEFAULT ''                NULL,
     update_time    datetime2      DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted        bit            DEFAULT 0                 NOT NULL,
-    tenant_id      bigint         DEFAULT 0                 NOT NULL
-)
+    deleted        bit            DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -7584,13 +6694,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_operate_log',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'操作日志记录 V2 版本',
      'SCHEMA', N'dbo',
      'TABLE', N'system_operate_log'
@@ -7613,9 +6716,7 @@ CREATE TABLE system_post
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -7696,13 +6797,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_post',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'岗位信息表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_post'
@@ -7716,14 +6810,10 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_post ON
 GO
-INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'ceo', N'董事长', 1, 0, N'', N'admin', N'2021-01-06 17:03:48', N'1', N'2023-02-11 15:19:04', N'0', 1)
-GO
-INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'se', N'项目经理', 2, 0, N'', N'admin', N'2021-01-05 17:03:48', N'1', N'2023-11-15 09:18:20', N'0', 1)
-GO
-INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4, N'user', N'普通员工', 4, 0, N'111222', N'admin', N'2021-01-05 17:03:48', N'1', N'2025-03-24 21:32:40', N'0', 1)
-GO
-INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5, N'HR', N'人力资源', 5, 0, N'`', N'1', N'2024-03-24 20:45:40', N'1', N'2025-03-29 19:08:10', N'0', 1)
-GO
+INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted) VALUES (1, N'ceo', N'董事长', 1, 0, N'', N'admin', N'2021-01-06 17:03:48', N'1', N'2023-02-11 15:19:04', N'0')GO
+INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted) VALUES (2, N'se', N'项目经理', 2, 0, N'', N'admin', N'2021-01-05 17:03:48', N'1', N'2023-11-15 09:18:20', N'0')GO
+INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted) VALUES (4, N'user', N'普通员工', 4, 0, N'111222', N'admin', N'2021-01-05 17:03:48', N'1', N'2025-03-24 21:32:40', N'0')GO
+INSERT INTO system_post (id, code, name, sort, status, remark, creator, create_time, updater, update_time, deleted) VALUES (5, N'HR', N'人力资源', 5, 0, N'`', N'1', N'2024-03-24 20:45:40', N'1', N'2025-03-29 19:08:10', N'0')GO
 SET IDENTITY_INSERT system_post OFF
 GO
 COMMIT
@@ -7750,9 +6840,7 @@ CREATE TABLE system_role
     create_time         datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater             nvarchar(64)  DEFAULT ''                NULL,
     update_time         datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted             bit           DEFAULT 0                 NOT NULL,
-    tenant_id           bigint        DEFAULT 0                 NOT NULL
-)
+    deleted             bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -7854,13 +6942,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_role',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'角色信息表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_role'
@@ -7874,22 +6955,13 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_role ON
 GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'超级管理员', N'super_admin', 1, 1, N'', 0, 1, N'超级管理员', N'admin', N'2021-01-05 17:03:48', N'', N'2022-02-22 05:08:21', N'0', 1)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'普通角色', N'common', 2, 2, N'', 0, 1, N'普通角色', N'admin', N'2021-01-05 17:03:48', N'', N'2022-02-22 05:08:20', N'0', 1)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3, N'CRM 管理员', N'crm_admin', 2, 1, N'', 0, 1, N'CRM 专属角色', N'1', N'2024-02-24 10:51:13', N'1', N'2024-02-24 02:51:32', N'0', 1)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (101, N'测试账号', N'test', 0, 1, N'[]', 0, 2, N'123', N'', N'2021-01-06 13:49:35', N'1', N'2025-04-30 17:38:28', N'0', 1)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (109, N'租户管理员', N'tenant_admin', 0, 1, N'', 0, 1, N'系统自动生成', N'1', N'2022-02-22 00:56:14', N'1', N'2022-02-22 00:56:14', N'0', 121)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (111, N'租户管理员', N'tenant_admin', 0, 1, N'', 0, 1, N'系统自动生成', N'1', N'2022-03-07 21:37:58', N'1', N'2022-03-07 21:37:58', N'0', 122)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (155, N'测试数据权限', N'test-dp', 3, 2, N'[100,102,103,104,105,108]', 0, 2, N'', N'1', N'2025-03-31 14:58:06', N'1', N'2025-04-17 23:07:44', N'0', 1)
-GO
-INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (158, N'2', N'3', 4, 1, N'', 0, 2, NULL, N'1', N'2025-04-17 20:08:08', N'1', N'2025-04-17 23:05:31', N'0', 1)
-GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (1, N'超级管理员', N'super_admin', 1, 1, N'', 0, 1, N'超级管理员', N'admin', N'2021-01-05 17:03:48', N'', N'2022-02-22 05:08:21', N'0')GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (2, N'普通角色', N'common', 2, 2, N'', 0, 1, N'普通角色', N'admin', N'2021-01-05 17:03:48', N'', N'2022-02-22 05:08:20', N'0')GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (101, N'测试账号', N'test', 0, 1, N'[]', 0, 2, N'123', N'', N'2021-01-06 13:49:35', N'1', N'2025-04-30 17:38:28', N'0')GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (109, N'租户管理员', N'tenant_admin', 0, 1, N'', 0, 1, N'系统自动生成', N'1', N'2022-02-22 00:56:14', N'1', N'2022-02-22 00:56:14', N'0')GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (111, N'租户管理员', N'tenant_admin', 0, 1, N'', 0, 1, N'系统自动生成', N'1', N'2022-03-07 21:37:58', N'1', N'2022-03-07 21:37:58', N'0')GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (155, N'测试数据权限', N'test-dp', 3, 2, N'[100,102,103,104,105,108]', 0, 2, N'', N'1', N'2025-03-31 14:58:06', N'1', N'2025-04-17 23:07:44', N'0')GO
+INSERT INTO system_role (id, name, code, sort, data_scope, data_scope_dept_ids, status, type, remark, creator, create_time, updater, update_time, deleted) VALUES (158, N'2', N'3', 4, 1, N'', 0, 2, NULL, N'1', N'2025-04-17 20:08:08', N'1', N'2025-04-17 23:05:31', N'0')GO
 SET IDENTITY_INSERT system_role OFF
 GO
 COMMIT
@@ -7910,9 +6982,7 @@ CREATE TABLE system_role_menu
     create_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64) DEFAULT ''                NULL,
     update_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit          DEFAULT 0                 NOT NULL,
-    tenant_id   bigint       DEFAULT 0                 NOT NULL
-)
+    deleted     bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -7972,13 +7042,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_role_menu',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'角色和菜单关联表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_role_menu'
@@ -7992,2851 +7055,879 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_role_menu ON
 GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (263, 109, 1, N'1', N'2022-02-22 00:56:14', N'1', N'2022-02-22 00:56:14', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (434, 2, 1, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (454, 2, 1093, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (455, 2, 1094, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (460, 2, 1100, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (467, 2, 1107, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (476, 2, 1117, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (477, 2, 100, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (478, 2, 101, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (479, 2, 102, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (480, 2, 1126, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (481, 2, 103, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (483, 2, 104, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (485, 2, 105, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (488, 2, 107, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (490, 2, 108, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (492, 2, 109, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (498, 2, 1138, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (523, 2, 1224, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (524, 2, 1225, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (541, 2, 500, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (543, 2, 501, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (675, 2, 2, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (689, 2, 1077, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (690, 2, 1078, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (692, 2, 1083, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (693, 2, 1084, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (699, 2, 1090, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (703, 2, 106, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (704, 2, 110, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (705, 2, 111, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (706, 2, 112, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (707, 2, 113, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1296, 110, 1, N'110', N'2022-02-23 00:23:55', N'110', N'2022-02-23 00:23:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1578, 111, 1, N'1', N'2022-03-07 21:37:58', N'1', N'2022-03-07 21:37:58', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1604, 101, 1216, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1605, 101, 1217, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1606, 101, 1218, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1607, 101, 1219, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1608, 101, 1220, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1609, 101, 1221, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1610, 101, 5, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1611, 101, 1222, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1612, 101, 1118, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1613, 101, 1119, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1614, 101, 1120, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1615, 101, 1185, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1616, 101, 1186, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1617, 101, 1187, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1618, 101, 1188, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1619, 101, 1189, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1620, 101, 1190, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1621, 101, 1191, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1622, 101, 1192, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1623, 101, 1193, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1624, 101, 1194, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1625, 101, 1195, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1627, 101, 1197, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1628, 101, 1198, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1629, 101, 1199, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1630, 101, 1200, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1631, 101, 1201, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1632, 101, 1202, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1633, 101, 1207, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1634, 101, 1208, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1635, 101, 1209, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1636, 101, 1210, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1637, 101, 1211, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1638, 101, 1212, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1639, 101, 1213, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1640, 101, 1215, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1641, 101, 2, N'1', N'2022-04-01 22:21:24', N'1', N'2022-04-01 22:21:24', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1642, 101, 1031, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1643, 101, 1032, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1644, 101, 1033, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1645, 101, 1034, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1646, 101, 1035, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1647, 101, 1050, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1648, 101, 1051, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1649, 101, 1052, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1650, 101, 1053, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1651, 101, 1054, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1652, 101, 1056, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1653, 101, 1057, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1654, 101, 1058, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1655, 101, 1059, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1656, 101, 1060, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1657, 101, 1066, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1658, 101, 1067, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1659, 101, 1070, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1664, 101, 1075, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1666, 101, 1077, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1667, 101, 1078, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1668, 101, 1082, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1669, 101, 1083, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1670, 101, 1084, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1671, 101, 1085, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1672, 101, 1086, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1673, 101, 1087, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1674, 101, 1088, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1675, 101, 1089, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1679, 101, 1237, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1680, 101, 1238, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1681, 101, 1239, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1682, 101, 1240, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1683, 101, 1241, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1684, 101, 1242, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1685, 101, 1243, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1687, 101, 106, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1688, 101, 110, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1689, 101, 111, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1690, 101, 112, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1691, 101, 113, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1692, 101, 114, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1693, 101, 115, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1694, 101, 116, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1729, 109, 100, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1730, 109, 101, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1731, 109, 1063, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1732, 109, 1064, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1733, 109, 1001, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1734, 109, 1065, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1735, 109, 1002, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1736, 109, 1003, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1737, 109, 1004, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1738, 109, 1005, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1739, 109, 1006, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1740, 109, 1007, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1741, 109, 1008, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1742, 109, 1009, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1743, 109, 1010, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1744, 109, 1011, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1745, 109, 1012, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1746, 111, 100, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1747, 111, 101, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1748, 111, 1063, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1749, 111, 1064, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1750, 111, 1001, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1751, 111, 1065, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1752, 111, 1002, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1753, 111, 1003, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1754, 111, 1004, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1755, 111, 1005, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1756, 111, 1006, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1757, 111, 1007, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1758, 111, 1008, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1759, 111, 1009, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1760, 111, 1010, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1761, 111, 1011, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1762, 111, 1012, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1763, 109, 100, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1764, 109, 101, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1765, 109, 1063, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1766, 109, 1064, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1767, 109, 1001, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1768, 109, 1065, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1769, 109, 1002, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1770, 109, 1003, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1771, 109, 1004, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1772, 109, 1005, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1773, 109, 1006, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1774, 109, 1007, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1775, 109, 1008, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1776, 109, 1009, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1777, 109, 1010, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1778, 109, 1011, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1779, 109, 1012, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1780, 111, 100, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1781, 111, 101, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1782, 111, 1063, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1783, 111, 1064, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1784, 111, 1001, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1785, 111, 1065, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1786, 111, 1002, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1787, 111, 1003, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1788, 111, 1004, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1789, 111, 1005, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1790, 111, 1006, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1791, 111, 1007, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1792, 111, 1008, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1793, 111, 1009, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1794, 111, 1010, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1795, 111, 1011, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1796, 111, 1012, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1797, 109, 100, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1798, 109, 101, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1799, 109, 1063, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1800, 109, 1064, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1801, 109, 1001, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1802, 109, 1065, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1803, 109, 1002, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1804, 109, 1003, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1805, 109, 1004, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1806, 109, 1005, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1807, 109, 1006, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1808, 109, 1007, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1809, 109, 1008, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1810, 109, 1009, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1811, 109, 1010, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1812, 109, 1011, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1813, 109, 1012, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1814, 111, 100, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1815, 111, 101, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1816, 111, 1063, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1817, 111, 1064, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1818, 111, 1001, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1819, 111, 1065, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1820, 111, 1002, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1821, 111, 1003, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1822, 111, 1004, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1823, 111, 1005, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1824, 111, 1006, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1825, 111, 1007, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1826, 111, 1008, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1827, 111, 1009, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1828, 111, 1010, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1829, 111, 1011, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1830, 111, 1012, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1831, 109, 103, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1832, 109, 1017, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1833, 109, 1018, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1834, 109, 1019, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1835, 109, 1020, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1836, 111, 103, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1837, 111, 1017, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1838, 111, 1018, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1839, 111, 1019, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1840, 111, 1020, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1841, 109, 1036, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1842, 109, 1037, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1843, 109, 1038, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1844, 109, 1039, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1845, 109, 107, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1846, 111, 1036, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1847, 111, 1037, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1848, 111, 1038, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1849, 111, 1039, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1850, 111, 107, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1991, 2, 1024, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1992, 2, 1025, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1993, 2, 1026, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1994, 2, 1027, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1995, 2, 1028, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1996, 2, 1029, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1997, 2, 1030, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1998, 2, 1031, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1999, 2, 1032, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2000, 2, 1033, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2001, 2, 1034, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2002, 2, 1035, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2003, 2, 1036, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2004, 2, 1037, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2005, 2, 1038, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2006, 2, 1039, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2007, 2, 1040, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2008, 2, 1042, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2009, 2, 1043, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2010, 2, 1045, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2011, 2, 1046, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2012, 2, 1048, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2013, 2, 1050, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2014, 2, 1051, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2015, 2, 1052, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2016, 2, 1053, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2017, 2, 1054, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2018, 2, 1056, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2019, 2, 1057, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2020, 2, 1058, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2021, 2, 2083, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2022, 2, 1059, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2023, 2, 1060, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2024, 2, 1063, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2025, 2, 1064, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2026, 2, 1065, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2027, 2, 1066, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2028, 2, 1067, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2029, 2, 1070, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2034, 2, 1075, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2036, 2, 1082, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2037, 2, 1085, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2038, 2, 1086, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2039, 2, 1087, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2040, 2, 1088, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2041, 2, 1089, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2042, 2, 1091, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2043, 2, 1092, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2044, 2, 1095, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2045, 2, 1096, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2046, 2, 1097, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2047, 2, 1098, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2048, 2, 1101, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2049, 2, 1102, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2050, 2, 1103, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2051, 2, 1104, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2052, 2, 1105, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2053, 2, 1106, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2054, 2, 1108, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2055, 2, 1109, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2061, 2, 1127, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2062, 2, 1128, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2063, 2, 1129, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2064, 2, 1130, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2066, 2, 1132, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2067, 2, 1133, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2068, 2, 1134, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2069, 2, 1135, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2070, 2, 1136, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2071, 2, 1137, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2072, 2, 114, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2073, 2, 1139, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2074, 2, 115, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2075, 2, 1140, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2076, 2, 116, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2077, 2, 1141, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2078, 2, 1142, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2079, 2, 1143, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2080, 2, 1150, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2081, 2, 1161, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2082, 2, 1162, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2086, 2, 1166, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2087, 2, 1173, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2088, 2, 1174, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2092, 2, 1178, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2099, 2, 1226, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2100, 2, 1227, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2101, 2, 1228, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2102, 2, 1229, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2103, 2, 1237, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2104, 2, 1238, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2105, 2, 1239, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2106, 2, 1240, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2107, 2, 1241, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2108, 2, 1242, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2109, 2, 1243, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2116, 2, 1254, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2117, 2, 1255, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2118, 2, 1256, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2119, 2, 1257, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2120, 2, 1258, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2121, 2, 1259, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2122, 2, 1260, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2123, 2, 1261, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2124, 2, 1263, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2125, 2, 1264, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2126, 2, 1265, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2127, 2, 1266, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2128, 2, 1267, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2129, 2, 1001, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2130, 2, 1002, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2131, 2, 1003, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2132, 2, 1004, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2133, 2, 1005, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2134, 2, 1006, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2135, 2, 1007, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2136, 2, 1008, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2137, 2, 1009, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2138, 2, 1010, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2139, 2, 1011, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2140, 2, 1012, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2141, 2, 1013, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2143, 2, 1015, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2145, 2, 1017, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2146, 2, 1018, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2147, 2, 1019, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2148, 2, 1020, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2149, 2, 1021, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2150, 2, 1022, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2151, 2, 1023, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2152, 2, 1281, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2153, 2, 1282, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2154, 2, 2000, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2155, 2, 2002, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2156, 2, 2003, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2157, 2, 2004, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2158, 2, 2005, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2159, 2, 2006, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2160, 2, 2008, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2161, 2, 2009, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2162, 2, 2010, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2163, 2, 2011, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2164, 2, 2012, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2170, 2, 2019, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2171, 2, 2020, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2172, 2, 2021, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2173, 2, 2022, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2174, 2, 2023, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2175, 2, 2025, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2177, 2, 2027, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2178, 2, 2028, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2179, 2, 2029, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2180, 2, 2014, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2181, 2, 2015, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2182, 2, 2016, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2183, 2, 2017, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2184, 2, 2018, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2188, 101, 1024, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2189, 101, 1, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2190, 101, 1025, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2191, 101, 1026, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2192, 101, 1027, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2193, 101, 1028, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2194, 101, 1029, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2195, 101, 1030, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2196, 101, 1036, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2197, 101, 1037, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2198, 101, 1038, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2199, 101, 1039, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2200, 101, 1040, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2201, 101, 1042, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2202, 101, 1043, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2203, 101, 1045, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2204, 101, 1046, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2205, 101, 1048, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2206, 101, 2083, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2207, 101, 1063, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2208, 101, 1064, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2209, 101, 1065, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2210, 101, 1093, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2211, 101, 1094, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2212, 101, 1095, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2213, 101, 1096, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2214, 101, 1097, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2215, 101, 1098, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2216, 101, 1100, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2217, 101, 1101, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2218, 101, 1102, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2219, 101, 1103, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2220, 101, 1104, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2221, 101, 1105, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2222, 101, 1106, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2223, 101, 2130, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2224, 101, 1107, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2225, 101, 2131, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2226, 101, 1108, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2227, 101, 2132, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2228, 101, 1109, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2229, 101, 2133, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2230, 101, 2134, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2232, 101, 2135, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2234, 101, 2136, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2236, 101, 2137, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2238, 101, 2138, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2240, 101, 2139, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2242, 101, 2140, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2243, 101, 2141, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2244, 101, 2142, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2245, 101, 2143, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2246, 101, 2144, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2247, 101, 2145, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2248, 101, 2146, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2249, 101, 2147, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2250, 101, 100, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2251, 101, 2148, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2252, 101, 101, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2253, 101, 2149, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2254, 101, 102, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2255, 101, 2150, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2256, 101, 103, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2257, 101, 2151, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2258, 101, 104, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2259, 101, 2152, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2260, 101, 105, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2261, 101, 107, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2262, 101, 108, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2263, 101, 109, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2264, 101, 1138, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2265, 101, 1139, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2266, 101, 1140, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2267, 101, 1141, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2268, 101, 1142, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2269, 101, 1143, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2270, 101, 1224, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2271, 101, 1225, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2272, 101, 1226, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2273, 101, 1227, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2274, 101, 1228, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2275, 101, 1229, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2282, 101, 1261, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2283, 101, 1263, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2284, 101, 1264, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2285, 101, 1265, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2286, 101, 1266, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2287, 101, 1267, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2288, 101, 1001, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2289, 101, 1002, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2290, 101, 1003, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2291, 101, 1004, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2292, 101, 1005, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2293, 101, 1006, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2294, 101, 1007, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2295, 101, 1008, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2296, 101, 1009, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2297, 101, 1010, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2298, 101, 1011, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2299, 101, 1012, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2300, 101, 500, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2301, 101, 1013, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2302, 101, 501, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2303, 101, 1014, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2304, 101, 1015, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2305, 101, 1016, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2306, 101, 1017, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2307, 101, 1018, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2308, 101, 1019, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2309, 101, 1020, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2310, 101, 1021, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2311, 101, 1022, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2312, 101, 1023, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2929, 109, 1224, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2930, 109, 1225, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2931, 109, 1226, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2932, 109, 1227, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2933, 109, 1228, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2934, 109, 1229, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2935, 109, 1138, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2936, 109, 1139, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2937, 109, 1140, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2938, 109, 1141, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2939, 109, 1142, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2940, 109, 1143, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2941, 111, 1224, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2942, 111, 1225, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2943, 111, 1226, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2944, 111, 1227, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2945, 111, 1228, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2946, 111, 1229, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2947, 111, 1138, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2948, 111, 1139, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2949, 111, 1140, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2950, 111, 1141, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2951, 111, 1142, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2952, 111, 1143, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2993, 109, 2, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2994, 109, 1031, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2995, 109, 1032, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2996, 109, 1033, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2997, 109, 1034, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2998, 109, 1035, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2999, 109, 1050, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3000, 109, 1051, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3001, 109, 1052, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3002, 109, 1053, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3003, 109, 1054, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3004, 109, 1056, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3005, 109, 1057, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3006, 109, 1058, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3007, 109, 1059, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3008, 109, 1060, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3009, 109, 1066, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3010, 109, 1067, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3011, 109, 1070, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3012, 109, 1075, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3014, 109, 1077, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3015, 109, 1078, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3016, 109, 1082, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3017, 109, 1083, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3018, 109, 1084, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3019, 109, 1085, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3020, 109, 1086, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3021, 109, 1087, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3022, 109, 1088, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3023, 109, 1089, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3024, 109, 1090, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3025, 109, 1091, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3026, 109, 1092, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3027, 109, 106, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3028, 109, 110, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3029, 109, 111, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3030, 109, 112, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3031, 109, 113, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3032, 109, 114, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3033, 109, 115, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3034, 109, 116, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3035, 109, 2472, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3036, 109, 2478, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3037, 109, 2479, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3038, 109, 2480, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3039, 109, 2481, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3040, 109, 2482, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3041, 109, 2483, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3042, 109, 2484, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3043, 109, 2485, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3044, 109, 2486, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3045, 109, 2487, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3046, 109, 2488, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3047, 109, 2489, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3048, 109, 2490, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3049, 109, 2491, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3050, 109, 2492, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3051, 109, 2493, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3052, 109, 2494, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3053, 109, 2495, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3054, 109, 2497, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3055, 109, 1237, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3056, 109, 1238, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3057, 109, 1239, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3058, 109, 1240, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3059, 109, 1241, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3060, 109, 1242, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3061, 109, 1243, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3062, 109, 2525, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3063, 109, 1255, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3064, 109, 1256, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3065, 109, 1257, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3066, 109, 1258, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3067, 109, 1259, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3068, 109, 1260, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3069, 111, 2, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3070, 111, 1031, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3071, 111, 1032, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3072, 111, 1033, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3073, 111, 1034, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3074, 111, 1035, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3075, 111, 1050, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3076, 111, 1051, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3077, 111, 1052, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3078, 111, 1053, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3079, 111, 1054, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3080, 111, 1056, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3081, 111, 1057, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3082, 111, 1058, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3083, 111, 1059, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3084, 111, 1060, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3085, 111, 1066, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3086, 111, 1067, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3087, 111, 1070, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3088, 111, 1075, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3090, 111, 1077, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3091, 111, 1078, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3092, 111, 1082, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3093, 111, 1083, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3094, 111, 1084, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3095, 111, 1085, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3096, 111, 1086, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3097, 111, 1087, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3098, 111, 1088, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3099, 111, 1089, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3100, 111, 1090, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3101, 111, 1091, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3102, 111, 1092, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3103, 111, 106, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3104, 111, 110, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3105, 111, 111, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3106, 111, 112, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3107, 111, 113, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3108, 111, 114, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3109, 111, 115, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3110, 111, 116, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3111, 111, 2472, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3112, 111, 2478, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3113, 111, 2479, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3114, 111, 2480, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3115, 111, 2481, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3116, 111, 2482, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3117, 111, 2483, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3118, 111, 2484, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3119, 111, 2485, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3120, 111, 2486, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3121, 111, 2487, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3122, 111, 2488, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3123, 111, 2489, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3124, 111, 2490, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3125, 111, 2491, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3126, 111, 2492, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3127, 111, 2493, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3128, 111, 2494, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3129, 111, 2495, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3130, 111, 2497, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3131, 111, 1237, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3132, 111, 1238, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3133, 111, 1239, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3134, 111, 1240, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3135, 111, 1241, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3136, 111, 1242, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3137, 111, 1243, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3138, 111, 2525, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3139, 111, 1255, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3140, 111, 1256, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3141, 111, 1257, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3142, 111, 1258, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3143, 111, 1259, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3144, 111, 1260, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3221, 109, 102, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3222, 109, 1013, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3223, 109, 1014, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3224, 109, 1015, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3225, 109, 1016, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3226, 111, 102, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3227, 111, 1013, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3228, 111, 1014, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3229, 111, 1015, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3230, 111, 1016, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4163, 109, 5, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4164, 109, 1118, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4165, 109, 1119, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4166, 109, 1120, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4167, 109, 2713, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4168, 109, 2714, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4169, 109, 2715, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4170, 109, 2716, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4171, 109, 2717, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4172, 109, 2718, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4173, 109, 2720, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4174, 109, 1185, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4175, 109, 2721, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4176, 109, 1186, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4177, 109, 2722, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4178, 109, 1187, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4179, 109, 2723, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4180, 109, 1188, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4181, 109, 2724, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4182, 109, 1189, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4183, 109, 2725, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4184, 109, 1190, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4185, 109, 2726, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4186, 109, 1191, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4187, 109, 2727, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4188, 109, 1192, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4189, 109, 2728, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4190, 109, 1193, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4191, 109, 2729, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4192, 109, 1194, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4193, 109, 2730, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4194, 109, 1195, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4195, 109, 2731, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4196, 109, 1196, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4197, 109, 2732, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4198, 109, 1197, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4199, 109, 2733, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4200, 109, 1198, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4201, 109, 2734, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4202, 109, 1199, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4203, 109, 2735, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4204, 109, 1200, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4205, 109, 1201, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4206, 109, 1202, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4207, 109, 1207, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4208, 109, 1208, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4209, 109, 1209, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4210, 109, 1210, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4211, 109, 1211, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4212, 109, 1212, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4213, 109, 1213, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4214, 109, 1215, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4215, 109, 1216, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4216, 109, 1217, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4217, 109, 1218, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4218, 109, 1219, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4219, 109, 1220, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4220, 109, 1221, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4221, 109, 1222, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4222, 111, 5, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4223, 111, 1118, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4224, 111, 1119, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4225, 111, 1120, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4226, 111, 2713, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4227, 111, 2714, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4228, 111, 2715, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4229, 111, 2716, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4230, 111, 2717, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4231, 111, 2718, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4232, 111, 2720, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4233, 111, 1185, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4234, 111, 2721, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4235, 111, 1186, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4236, 111, 2722, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4237, 111, 1187, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4238, 111, 2723, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4239, 111, 1188, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4240, 111, 2724, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4241, 111, 1189, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4242, 111, 2725, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4243, 111, 1190, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4244, 111, 2726, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4245, 111, 1191, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4246, 111, 2727, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4247, 111, 1192, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4248, 111, 2728, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4249, 111, 1193, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4250, 111, 2729, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4251, 111, 1194, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4252, 111, 2730, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4253, 111, 1195, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4254, 111, 2731, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4255, 111, 1196, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4256, 111, 2732, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4257, 111, 1197, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4258, 111, 2733, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4259, 111, 1198, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4260, 111, 2734, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4261, 111, 1199, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4262, 111, 2735, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4263, 111, 1200, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4264, 111, 1201, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4265, 111, 1202, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4266, 111, 1207, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4267, 111, 1208, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4268, 111, 1209, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4269, 111, 1210, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4270, 111, 1211, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4271, 111, 1212, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4272, 111, 1213, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4273, 111, 1215, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4274, 111, 1216, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4275, 111, 1217, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4276, 111, 1218, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4277, 111, 1219, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4278, 111, 1220, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4279, 111, 1221, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4280, 111, 1222, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5777, 101, 2739, N'1', N'2024-04-30 09:38:37', N'1', N'2024-04-30 09:38:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5778, 101, 2740, N'1', N'2024-04-30 09:38:37', N'1', N'2024-04-30 09:38:37', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5779, 2, 2739, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5780, 2, 2740, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5781, 2, 2758, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5782, 2, 2759, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5783, 2, 2362, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5784, 2, 2387, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5785, 2, 2030, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5786, 101, 2758, N'1', N'2024-07-07 20:39:55', N'1', N'2024-07-07 20:39:55', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5787, 101, 2759, N'1', N'2024-07-07 20:39:55', N'1', N'2024-07-07 20:39:55', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5788, 101, 2783, N'1', N'2024-07-07 20:39:55', N'1', N'2024-07-07 20:39:55', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5789, 109, 2739, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5790, 109, 2740, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0', 121)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5791, 111, 2739, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5792, 111, 2740, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0', 122)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6053, 155, 4000, N'1', N'2025-04-01 13:48:26', N'1', N'2025-04-01 13:48:26', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6097, 155, 4050, N'1', N'2025-04-01 13:48:26', N'1', N'2025-04-01 13:48:26', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6104, 155, 4032, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6105, 155, 4033, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6106, 155, 4034, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6107, 155, 4035, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6108, 155, 4036, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6109, 155, 4037, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6110, 155, 4038, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6111, 155, 4039, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6112, 155, 4040, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6113, 155, 4041, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6114, 155, 4042, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6115, 155, 4043, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6116, 155, 4044, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6117, 155, 4045, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6118, 155, 4046, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6119, 155, 4001, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6120, 155, 4002, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6121, 155, 4003, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6122, 155, 4004, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6123, 155, 4005, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6124, 155, 4006, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6125, 155, 4007, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6126, 155, 4008, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6127, 155, 4009, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6128, 155, 4010, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6129, 155, 4011, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6130, 155, 4012, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6131, 155, 4013, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6132, 155, 4014, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6133, 155, 4015, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6134, 155, 4016, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6135, 155, 4017, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6136, 155, 4018, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6137, 155, 4031, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0', 1)
-GO
-INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6138, 101, 5010, N'1', N'2025-05-05 17:49:17', N'1', N'2025-05-05 17:49:17', N'0', 1)
-GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (263, 109, 1, N'1', N'2022-02-22 00:56:14', N'1', N'2022-02-22 00:56:14', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (434, 2, 1, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (454, 2, 1093, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (455, 2, 1094, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (460, 2, 1100, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (467, 2, 1107, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (476, 2, 1117, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (477, 2, 100, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (478, 2, 101, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (479, 2, 102, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (480, 2, 1126, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (481, 2, 103, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (483, 2, 104, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (485, 2, 105, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (488, 2, 107, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (490, 2, 108, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (492, 2, 109, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (498, 2, 1138, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (523, 2, 1224, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (524, 2, 1225, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (541, 2, 500, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (543, 2, 501, N'1', N'2022-02-22 13:09:12', N'1', N'2022-02-22 13:09:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (675, 2, 2, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (689, 2, 1077, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (690, 2, 1078, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (692, 2, 1083, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (693, 2, 1084, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (699, 2, 1090, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (703, 2, 106, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (704, 2, 110, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (705, 2, 111, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (706, 2, 112, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (707, 2, 113, N'1', N'2022-02-22 13:16:57', N'1', N'2022-02-22 13:16:57', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1296, 110, 1, N'110', N'2022-02-23 00:23:55', N'110', N'2022-02-23 00:23:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1578, 111, 1, N'1', N'2022-03-07 21:37:58', N'1', N'2022-03-07 21:37:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1604, 101, 1216, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1605, 101, 1217, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1606, 101, 1218, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1607, 101, 1219, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1608, 101, 1220, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1609, 101, 1221, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1610, 101, 5, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1611, 101, 1222, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1612, 101, 1118, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1613, 101, 1119, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1614, 101, 1120, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1615, 101, 1185, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1616, 101, 1186, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1617, 101, 1187, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1618, 101, 1188, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1619, 101, 1189, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1620, 101, 1190, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1621, 101, 1191, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1622, 101, 1192, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1623, 101, 1193, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1624, 101, 1194, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1625, 101, 1195, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1627, 101, 1197, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1628, 101, 1198, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1629, 101, 1199, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1630, 101, 1200, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1631, 101, 1201, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1632, 101, 1202, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1633, 101, 1207, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1634, 101, 1208, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1635, 101, 1209, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1636, 101, 1210, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1637, 101, 1211, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1638, 101, 1212, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1639, 101, 1213, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1640, 101, 1215, N'1', N'2022-03-19 21:45:52', N'1', N'2022-03-19 21:45:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1641, 101, 2, N'1', N'2022-04-01 22:21:24', N'1', N'2022-04-01 22:21:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1642, 101, 1031, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1643, 101, 1032, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1644, 101, 1033, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1645, 101, 1034, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1646, 101, 1035, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1647, 101, 1050, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1648, 101, 1051, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1649, 101, 1052, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1650, 101, 1053, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1651, 101, 1054, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1652, 101, 1056, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1653, 101, 1057, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1654, 101, 1058, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1655, 101, 1059, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1656, 101, 1060, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1657, 101, 1066, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1658, 101, 1067, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1659, 101, 1070, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1664, 101, 1075, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1666, 101, 1077, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1667, 101, 1078, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1668, 101, 1082, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1669, 101, 1083, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1670, 101, 1084, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1671, 101, 1085, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1672, 101, 1086, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1673, 101, 1087, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1674, 101, 1088, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1675, 101, 1089, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1679, 101, 1237, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1680, 101, 1238, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1681, 101, 1239, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1682, 101, 1240, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1683, 101, 1241, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1684, 101, 1242, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1685, 101, 1243, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1687, 101, 106, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1688, 101, 110, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1689, 101, 111, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1690, 101, 112, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1691, 101, 113, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1692, 101, 114, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1693, 101, 115, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1694, 101, 116, N'1', N'2022-04-01 22:21:37', N'1', N'2022-04-01 22:21:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1729, 109, 100, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1730, 109, 101, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1731, 109, 1063, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1732, 109, 1064, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1733, 109, 1001, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1734, 109, 1065, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1735, 109, 1002, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1736, 109, 1003, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1737, 109, 1004, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1738, 109, 1005, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1739, 109, 1006, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1740, 109, 1007, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1741, 109, 1008, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1742, 109, 1009, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1743, 109, 1010, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1744, 109, 1011, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1745, 109, 1012, N'1', N'2022-09-21 22:08:51', N'1', N'2022-09-21 22:08:51', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1746, 111, 100, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1747, 111, 101, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1748, 111, 1063, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1749, 111, 1064, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1750, 111, 1001, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1751, 111, 1065, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1752, 111, 1002, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1753, 111, 1003, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1754, 111, 1004, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1755, 111, 1005, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1756, 111, 1006, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1757, 111, 1007, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1758, 111, 1008, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1759, 111, 1009, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1760, 111, 1010, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1761, 111, 1011, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1762, 111, 1012, N'1', N'2022-09-21 22:08:52', N'1', N'2022-09-21 22:08:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1763, 109, 100, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1764, 109, 101, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1765, 109, 1063, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1766, 109, 1064, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1767, 109, 1001, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1768, 109, 1065, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1769, 109, 1002, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1770, 109, 1003, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1771, 109, 1004, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1772, 109, 1005, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1773, 109, 1006, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1774, 109, 1007, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1775, 109, 1008, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1776, 109, 1009, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1777, 109, 1010, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1778, 109, 1011, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1779, 109, 1012, N'1', N'2022-09-21 22:08:53', N'1', N'2022-09-21 22:08:53', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1780, 111, 100, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1781, 111, 101, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1782, 111, 1063, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1783, 111, 1064, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1784, 111, 1001, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1785, 111, 1065, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1786, 111, 1002, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1787, 111, 1003, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1788, 111, 1004, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1789, 111, 1005, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1790, 111, 1006, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1791, 111, 1007, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1792, 111, 1008, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1793, 111, 1009, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1794, 111, 1010, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1795, 111, 1011, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1796, 111, 1012, N'1', N'2022-09-21 22:08:54', N'1', N'2022-09-21 22:08:54', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1797, 109, 100, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1798, 109, 101, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1799, 109, 1063, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1800, 109, 1064, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1801, 109, 1001, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1802, 109, 1065, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1803, 109, 1002, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1804, 109, 1003, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1805, 109, 1004, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1806, 109, 1005, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1807, 109, 1006, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1808, 109, 1007, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1809, 109, 1008, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1810, 109, 1009, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1811, 109, 1010, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1812, 109, 1011, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1813, 109, 1012, N'1', N'2022-09-21 22:08:55', N'1', N'2022-09-21 22:08:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1814, 111, 100, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1815, 111, 101, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1816, 111, 1063, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1817, 111, 1064, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1818, 111, 1001, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1819, 111, 1065, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1820, 111, 1002, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1821, 111, 1003, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1822, 111, 1004, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1823, 111, 1005, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1824, 111, 1006, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1825, 111, 1007, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1826, 111, 1008, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1827, 111, 1009, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1828, 111, 1010, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1829, 111, 1011, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1830, 111, 1012, N'1', N'2022-09-21 22:08:56', N'1', N'2022-09-21 22:08:56', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1831, 109, 103, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1832, 109, 1017, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1833, 109, 1018, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1834, 109, 1019, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1835, 109, 1020, N'1', N'2022-09-21 22:43:23', N'1', N'2022-09-21 22:43:23', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1836, 111, 103, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1837, 111, 1017, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1838, 111, 1018, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1839, 111, 1019, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1840, 111, 1020, N'1', N'2022-09-21 22:43:24', N'1', N'2022-09-21 22:43:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1841, 109, 1036, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1842, 109, 1037, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1843, 109, 1038, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1844, 109, 1039, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1845, 109, 107, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1846, 111, 1036, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1847, 111, 1037, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1848, 111, 1038, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1849, 111, 1039, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1850, 111, 107, N'1', N'2022-09-21 22:48:13', N'1', N'2022-09-21 22:48:13', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1991, 2, 1024, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1992, 2, 1025, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1993, 2, 1026, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1994, 2, 1027, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1995, 2, 1028, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1996, 2, 1029, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1997, 2, 1030, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1998, 2, 1031, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (1999, 2, 1032, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2000, 2, 1033, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2001, 2, 1034, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2002, 2, 1035, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2003, 2, 1036, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2004, 2, 1037, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2005, 2, 1038, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2006, 2, 1039, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2007, 2, 1040, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2008, 2, 1042, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2009, 2, 1043, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2010, 2, 1045, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2011, 2, 1046, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2012, 2, 1048, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2013, 2, 1050, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2014, 2, 1051, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2015, 2, 1052, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2016, 2, 1053, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2017, 2, 1054, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2018, 2, 1056, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2019, 2, 1057, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2020, 2, 1058, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2021, 2, 2083, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2022, 2, 1059, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2023, 2, 1060, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2024, 2, 1063, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2025, 2, 1064, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2026, 2, 1065, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2027, 2, 1066, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2028, 2, 1067, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2029, 2, 1070, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2034, 2, 1075, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2036, 2, 1082, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2037, 2, 1085, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2038, 2, 1086, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2039, 2, 1087, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2040, 2, 1088, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2041, 2, 1089, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2042, 2, 1091, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2043, 2, 1092, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2044, 2, 1095, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2045, 2, 1096, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2046, 2, 1097, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2047, 2, 1098, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2048, 2, 1101, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2049, 2, 1102, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2050, 2, 1103, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2051, 2, 1104, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2052, 2, 1105, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2053, 2, 1106, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2054, 2, 1108, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2055, 2, 1109, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2061, 2, 1127, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2062, 2, 1128, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2063, 2, 1129, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2064, 2, 1130, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2066, 2, 1132, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2067, 2, 1133, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2068, 2, 1134, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2069, 2, 1135, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2070, 2, 1136, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2071, 2, 1137, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2072, 2, 114, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2073, 2, 1139, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2074, 2, 115, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2075, 2, 1140, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2076, 2, 116, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2077, 2, 1141, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2078, 2, 1142, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2079, 2, 1143, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2080, 2, 1150, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2081, 2, 1161, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2082, 2, 1162, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2086, 2, 1166, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2087, 2, 1173, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2088, 2, 1174, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2092, 2, 1178, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2099, 2, 1226, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2100, 2, 1227, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2101, 2, 1228, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2102, 2, 1229, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2103, 2, 1237, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2104, 2, 1238, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2105, 2, 1239, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2106, 2, 1240, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2107, 2, 1241, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2108, 2, 1242, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2109, 2, 1243, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2116, 2, 1254, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2117, 2, 1255, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2118, 2, 1256, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2119, 2, 1257, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2120, 2, 1258, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2121, 2, 1259, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2122, 2, 1260, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2123, 2, 1261, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2124, 2, 1263, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2125, 2, 1264, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2126, 2, 1265, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2127, 2, 1266, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2128, 2, 1267, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2129, 2, 1001, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2130, 2, 1002, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2131, 2, 1003, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2132, 2, 1004, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2133, 2, 1005, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2134, 2, 1006, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2135, 2, 1007, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2136, 2, 1008, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2137, 2, 1009, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2138, 2, 1010, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2139, 2, 1011, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2140, 2, 1012, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2141, 2, 1013, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2143, 2, 1015, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2145, 2, 1017, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2146, 2, 1018, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2147, 2, 1019, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2148, 2, 1020, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2149, 2, 1021, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2150, 2, 1022, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2151, 2, 1023, N'1', N'2023-01-25 08:42:52', N'1', N'2023-01-25 08:42:52', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2152, 2, 1281, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2153, 2, 1282, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2154, 2, 2000, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2155, 2, 2002, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2156, 2, 2003, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2157, 2, 2004, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2158, 2, 2005, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2159, 2, 2006, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2160, 2, 2008, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2161, 2, 2009, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2162, 2, 2010, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2163, 2, 2011, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2164, 2, 2012, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2170, 2, 2019, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2171, 2, 2020, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2172, 2, 2021, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2173, 2, 2022, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2174, 2, 2023, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2175, 2, 2025, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2177, 2, 2027, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2178, 2, 2028, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2179, 2, 2029, N'1', N'2023-01-25 08:42:58', N'1', N'2023-01-25 08:42:58', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2180, 2, 2014, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2181, 2, 2015, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2182, 2, 2016, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2183, 2, 2017, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2184, 2, 2018, N'1', N'2023-01-25 08:43:12', N'1', N'2023-01-25 08:43:12', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2188, 101, 1024, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2189, 101, 1, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2190, 101, 1025, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2191, 101, 1026, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2192, 101, 1027, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2193, 101, 1028, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2194, 101, 1029, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2195, 101, 1030, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2196, 101, 1036, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2197, 101, 1037, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2198, 101, 1038, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2199, 101, 1039, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2200, 101, 1040, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2201, 101, 1042, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2202, 101, 1043, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2203, 101, 1045, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2204, 101, 1046, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2205, 101, 1048, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2206, 101, 2083, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2207, 101, 1063, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2208, 101, 1064, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2209, 101, 1065, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2210, 101, 1093, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2211, 101, 1094, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2212, 101, 1095, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2213, 101, 1096, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2214, 101, 1097, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2215, 101, 1098, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2216, 101, 1100, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2217, 101, 1101, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2218, 101, 1102, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2219, 101, 1103, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2220, 101, 1104, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2221, 101, 1105, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2222, 101, 1106, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2223, 101, 2130, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2224, 101, 1107, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2225, 101, 2131, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2226, 101, 1108, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2227, 101, 2132, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2228, 101, 1109, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2229, 101, 2133, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2230, 101, 2134, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2232, 101, 2135, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2234, 101, 2136, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2236, 101, 2137, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2238, 101, 2138, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2240, 101, 2139, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2242, 101, 2140, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2243, 101, 2141, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2244, 101, 2142, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2245, 101, 2143, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2246, 101, 2144, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2247, 101, 2145, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2248, 101, 2146, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2249, 101, 2147, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2250, 101, 100, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2251, 101, 2148, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2252, 101, 101, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2253, 101, 2149, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2254, 101, 102, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2255, 101, 2150, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2256, 101, 103, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2257, 101, 2151, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2258, 101, 104, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2259, 101, 2152, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2260, 101, 105, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2261, 101, 107, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2262, 101, 108, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2263, 101, 109, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2264, 101, 1138, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2265, 101, 1139, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2266, 101, 1140, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2267, 101, 1141, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2268, 101, 1142, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2269, 101, 1143, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2270, 101, 1224, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2271, 101, 1225, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2272, 101, 1226, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2273, 101, 1227, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2274, 101, 1228, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2275, 101, 1229, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2282, 101, 1261, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2283, 101, 1263, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2284, 101, 1264, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2285, 101, 1265, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2286, 101, 1266, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2287, 101, 1267, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2288, 101, 1001, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2289, 101, 1002, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2290, 101, 1003, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2291, 101, 1004, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2292, 101, 1005, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2293, 101, 1006, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2294, 101, 1007, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2295, 101, 1008, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2296, 101, 1009, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2297, 101, 1010, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2298, 101, 1011, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2299, 101, 1012, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2300, 101, 500, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2301, 101, 1013, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2302, 101, 501, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2303, 101, 1014, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2304, 101, 1015, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2305, 101, 1016, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2306, 101, 1017, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2307, 101, 1018, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2308, 101, 1019, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2309, 101, 1020, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2310, 101, 1021, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2311, 101, 1022, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2312, 101, 1023, N'1', N'2023-02-09 23:49:46', N'1', N'2023-02-09 23:49:46', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2929, 109, 1224, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2930, 109, 1225, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2931, 109, 1226, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2932, 109, 1227, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2933, 109, 1228, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2934, 109, 1229, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2935, 109, 1138, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2936, 109, 1139, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2937, 109, 1140, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2938, 109, 1141, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2939, 109, 1142, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2940, 109, 1143, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2941, 111, 1224, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2942, 111, 1225, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2943, 111, 1226, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2944, 111, 1227, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2945, 111, 1228, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2946, 111, 1229, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2947, 111, 1138, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2948, 111, 1139, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2949, 111, 1140, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2950, 111, 1141, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2951, 111, 1142, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2952, 111, 1143, N'1', N'2023-12-02 23:19:40', N'1', N'2023-12-02 23:19:40', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2993, 109, 2, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2994, 109, 1031, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2995, 109, 1032, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2996, 109, 1033, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2997, 109, 1034, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2998, 109, 1035, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (2999, 109, 1050, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3000, 109, 1051, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3001, 109, 1052, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3002, 109, 1053, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3003, 109, 1054, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3004, 109, 1056, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3005, 109, 1057, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3006, 109, 1058, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3007, 109, 1059, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3008, 109, 1060, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3009, 109, 1066, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3010, 109, 1067, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3011, 109, 1070, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3012, 109, 1075, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3014, 109, 1077, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3015, 109, 1078, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3016, 109, 1082, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3017, 109, 1083, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3018, 109, 1084, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3019, 109, 1085, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3020, 109, 1086, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3021, 109, 1087, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3022, 109, 1088, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3023, 109, 1089, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3024, 109, 1090, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3025, 109, 1091, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3026, 109, 1092, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3027, 109, 106, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3028, 109, 110, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3029, 109, 111, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3030, 109, 112, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3031, 109, 113, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3032, 109, 114, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3033, 109, 115, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3034, 109, 116, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3035, 109, 2472, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3036, 109, 2478, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3037, 109, 2479, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3038, 109, 2480, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3039, 109, 2481, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3040, 109, 2482, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3041, 109, 2483, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3042, 109, 2484, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3043, 109, 2485, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3044, 109, 2486, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3045, 109, 2487, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3046, 109, 2488, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3047, 109, 2489, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3048, 109, 2490, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3049, 109, 2491, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3050, 109, 2492, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3051, 109, 2493, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3052, 109, 2494, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3053, 109, 2495, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3054, 109, 2497, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3055, 109, 1237, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3056, 109, 1238, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3057, 109, 1239, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3058, 109, 1240, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3059, 109, 1241, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3060, 109, 1242, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3061, 109, 1243, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3062, 109, 2525, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3063, 109, 1255, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3064, 109, 1256, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3065, 109, 1257, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3066, 109, 1258, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3067, 109, 1259, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3068, 109, 1260, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3069, 111, 2, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3070, 111, 1031, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3071, 111, 1032, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3072, 111, 1033, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3073, 111, 1034, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3074, 111, 1035, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3075, 111, 1050, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3076, 111, 1051, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3077, 111, 1052, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3078, 111, 1053, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3079, 111, 1054, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3080, 111, 1056, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3081, 111, 1057, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3082, 111, 1058, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3083, 111, 1059, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3084, 111, 1060, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3085, 111, 1066, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3086, 111, 1067, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3087, 111, 1070, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3088, 111, 1075, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3090, 111, 1077, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3091, 111, 1078, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3092, 111, 1082, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3093, 111, 1083, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3094, 111, 1084, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3095, 111, 1085, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3096, 111, 1086, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3097, 111, 1087, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3098, 111, 1088, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3099, 111, 1089, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3100, 111, 1090, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3101, 111, 1091, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3102, 111, 1092, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3103, 111, 106, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3104, 111, 110, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3105, 111, 111, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3106, 111, 112, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3107, 111, 113, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3108, 111, 114, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3109, 111, 115, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3110, 111, 116, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3111, 111, 2472, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3112, 111, 2478, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3113, 111, 2479, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3114, 111, 2480, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3115, 111, 2481, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3116, 111, 2482, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3117, 111, 2483, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3118, 111, 2484, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3119, 111, 2485, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3120, 111, 2486, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3121, 111, 2487, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3122, 111, 2488, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3123, 111, 2489, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3124, 111, 2490, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3125, 111, 2491, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3126, 111, 2492, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3127, 111, 2493, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3128, 111, 2494, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3129, 111, 2495, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3130, 111, 2497, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3131, 111, 1237, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3132, 111, 1238, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3133, 111, 1239, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3134, 111, 1240, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3135, 111, 1241, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3136, 111, 1242, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3137, 111, 1243, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3138, 111, 2525, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3139, 111, 1255, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3140, 111, 1256, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3141, 111, 1257, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3142, 111, 1258, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3143, 111, 1259, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3144, 111, 1260, N'1', N'2023-12-02 23:41:02', N'1', N'2023-12-02 23:41:02', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3221, 109, 102, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3222, 109, 1013, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3223, 109, 1014, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3224, 109, 1015, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3225, 109, 1016, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3226, 111, 102, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3227, 111, 1013, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3228, 111, 1014, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3229, 111, 1015, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (3230, 111, 1016, N'1', N'2023-12-30 11:42:36', N'1', N'2023-12-30 11:42:36', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4163, 109, 5, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4164, 109, 1118, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4165, 109, 1119, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4166, 109, 1120, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4167, 109, 2713, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4168, 109, 2714, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4169, 109, 2715, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4170, 109, 2716, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4171, 109, 2717, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4172, 109, 2718, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4173, 109, 2720, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4174, 109, 1185, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4175, 109, 2721, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4176, 109, 1186, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4177, 109, 2722, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4178, 109, 1187, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4179, 109, 2723, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4180, 109, 1188, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4181, 109, 2724, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4182, 109, 1189, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4183, 109, 2725, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4184, 109, 1190, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4185, 109, 2726, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4186, 109, 1191, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4187, 109, 2727, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4188, 109, 1192, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4189, 109, 2728, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4190, 109, 1193, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4191, 109, 2729, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4192, 109, 1194, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4193, 109, 2730, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4194, 109, 1195, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4195, 109, 2731, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4196, 109, 1196, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4197, 109, 2732, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4198, 109, 1197, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4199, 109, 2733, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4200, 109, 1198, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4201, 109, 2734, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4202, 109, 1199, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4203, 109, 2735, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4204, 109, 1200, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4205, 109, 1201, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4206, 109, 1202, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4207, 109, 1207, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4208, 109, 1208, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4209, 109, 1209, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4210, 109, 1210, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4211, 109, 1211, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4212, 109, 1212, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4213, 109, 1213, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4214, 109, 1215, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4215, 109, 1216, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4216, 109, 1217, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4217, 109, 1218, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4218, 109, 1219, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4219, 109, 1220, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4220, 109, 1221, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4221, 109, 1222, N'1', N'2024-03-30 17:53:17', N'1', N'2024-03-30 17:53:17', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4222, 111, 5, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4223, 111, 1118, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4224, 111, 1119, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4225, 111, 1120, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4226, 111, 2713, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4227, 111, 2714, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4228, 111, 2715, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4229, 111, 2716, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4230, 111, 2717, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4231, 111, 2718, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4232, 111, 2720, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4233, 111, 1185, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4234, 111, 2721, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4235, 111, 1186, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4236, 111, 2722, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4237, 111, 1187, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4238, 111, 2723, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4239, 111, 1188, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4240, 111, 2724, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4241, 111, 1189, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4242, 111, 2725, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4243, 111, 1190, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4244, 111, 2726, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4245, 111, 1191, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4246, 111, 2727, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4247, 111, 1192, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4248, 111, 2728, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4249, 111, 1193, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4250, 111, 2729, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4251, 111, 1194, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4252, 111, 2730, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4253, 111, 1195, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4254, 111, 2731, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4255, 111, 1196, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4256, 111, 2732, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4257, 111, 1197, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4258, 111, 2733, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4259, 111, 1198, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4260, 111, 2734, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4261, 111, 1199, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4262, 111, 2735, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4263, 111, 1200, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4264, 111, 1201, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4265, 111, 1202, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4266, 111, 1207, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4267, 111, 1208, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4268, 111, 1209, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4269, 111, 1210, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4270, 111, 1211, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4271, 111, 1212, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4272, 111, 1213, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4273, 111, 1215, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4274, 111, 1216, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4275, 111, 1217, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4276, 111, 1218, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4277, 111, 1219, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4278, 111, 1220, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4279, 111, 1221, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (4280, 111, 1222, N'1', N'2024-03-30 17:53:18', N'1', N'2024-03-30 17:53:18', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5777, 101, 2739, N'1', N'2024-04-30 09:38:37', N'1', N'2024-04-30 09:38:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5778, 101, 2740, N'1', N'2024-04-30 09:38:37', N'1', N'2024-04-30 09:38:37', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5779, 2, 2739, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5780, 2, 2740, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5781, 2, 2758, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5782, 2, 2759, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5783, 2, 2362, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5784, 2, 2387, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5785, 2, 2030, N'1', N'2024-07-07 20:39:38', N'1', N'2024-07-07 20:39:38', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5786, 101, 2758, N'1', N'2024-07-07 20:39:55', N'1', N'2024-07-07 20:39:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5787, 101, 2759, N'1', N'2024-07-07 20:39:55', N'1', N'2024-07-07 20:39:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5788, 101, 2783, N'1', N'2024-07-07 20:39:55', N'1', N'2024-07-07 20:39:55', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5789, 109, 2739, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5790, 109, 2740, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5791, 111, 2739, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (5792, 111, 2740, N'1', N'2024-07-13 22:37:24', N'1', N'2024-07-13 22:37:24', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6053, 155, 4000, N'1', N'2025-04-01 13:48:26', N'1', N'2025-04-01 13:48:26', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6097, 155, 4050, N'1', N'2025-04-01 13:48:26', N'1', N'2025-04-01 13:48:26', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6104, 155, 4032, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6105, 155, 4033, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6106, 155, 4034, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6107, 155, 4035, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6108, 155, 4036, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6109, 155, 4037, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6110, 155, 4038, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6111, 155, 4039, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6112, 155, 4040, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6113, 155, 4041, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6114, 155, 4042, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6115, 155, 4043, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6116, 155, 4044, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6117, 155, 4045, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6118, 155, 4046, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6119, 155, 4001, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6120, 155, 4002, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6121, 155, 4003, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6122, 155, 4004, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6123, 155, 4005, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6124, 155, 4006, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6125, 155, 4007, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6126, 155, 4008, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6127, 155, 4009, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6128, 155, 4010, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6129, 155, 4011, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6130, 155, 4012, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6131, 155, 4013, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6132, 155, 4014, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6133, 155, 4015, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6134, 155, 4016, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6135, 155, 4017, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6136, 155, 4018, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6137, 155, 4031, N'1', N'2025-04-01 13:49:30', N'1', N'2025-04-01 13:49:30', N'0')GO
+INSERT INTO system_role_menu (id, role_id, menu_id, creator, create_time, updater, update_time, deleted) VALUES (6138, 101, 5010, N'1', N'2025-05-05 17:49:17', N'1', N'2025-05-05 17:49:17', N'0')GO
 SET IDENTITY_INSERT system_role_menu OFF
 GO
 COMMIT
 GO
 -- @formatter:on
 
--- ----------------------------
--- Table structure for system_sms_channel
--- ----------------------------
-DROP TABLE IF EXISTS system_sms_channel
-GO
-CREATE TABLE system_sms_channel
-(
-    id           bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    signature    nvarchar(12)                            NOT NULL,
-    code         nvarchar(63)                            NOT NULL,
-    status       tinyint                                 NOT NULL,
-    remark       nvarchar(255) DEFAULT NULL              NULL,
-    api_key      nvarchar(128)                           NOT NULL,
-    api_secret   nvarchar(128) DEFAULT NULL              NULL,
-    callback_url nvarchar(255) DEFAULT NULL              NULL,
-    creator      nvarchar(64)  DEFAULT ''                NULL,
-    create_time  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater      nvarchar(64)  DEFAULT ''                NULL,
-    update_time  datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted      bit           DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信签名',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'signature'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'渠道编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'开启状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'备注',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'remark'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 的账号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'api_key'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 的秘钥',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'api_secret'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信发送回调 URL',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'callback_url'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信渠道',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_channel'
-GO
 
 -- ----------------------------
--- Records of system_sms_channel
 -- ----------------------------
--- @formatter:off
-BEGIN TRANSACTION
 GO
-SET IDENTITY_INSERT system_sms_channel ON
-GO
-INSERT INTO system_sms_channel (id, signature, code, status, remark, api_key, api_secret, callback_url, creator, create_time, updater, update_time, deleted) VALUES (2, N'Ballcat', N'ALIYUN', 0, N'你要改哦，只有我可以用！！！！', N'LTAI5tCnKso2uG3kJ5gRav88', N'fGJ5SNXL7P1NHNRmJ7DJaMJGPyE55C', NULL, N'', N'2021-03-31 11:53:10', N'1', N'2024-08-04 08:53:26', N'0')
-GO
-INSERT INTO system_sms_channel (id, signature, code, status, remark, api_key, api_secret, callback_url, creator, create_time, updater, update_time, deleted) VALUES (4, N'测试渠道', N'DEBUG_DING_TALK', 0, N'123', N'696b5d8ead48071237e4aa5861ff08dbadb2b4ded1c688a7b7c9afc615579859', N'SEC5c4e5ff888bc8a9923ae47f59e7ccd30af1f14d93c55b4e2c9cb094e35aeed67', NULL, N'1', N'2021-04-13 00:23:14', N'1', N'2022-03-27 20:29:49', N'0')
-GO
-INSERT INTO system_sms_channel (id, signature, code, status, remark, api_key, api_secret, callback_url, creator, create_time, updater, update_time, deleted) VALUES (7, N'mock腾讯云', N'TENCENT', 0, N'', N'1 2', N'2 3', N'', N'1', N'2024-09-30 08:53:45', N'1', N'2024-09-30 08:55:01', N'0')
-GO
-SET IDENTITY_INSERT system_sms_channel OFF
-GO
-COMMIT
-GO
--- @formatter:on
-
--- ----------------------------
--- Table structure for system_sms_code
--- ----------------------------
-DROP TABLE IF EXISTS system_sms_code
-GO
-CREATE TABLE system_sms_code
-(
-    id          bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    mobile      nvarchar(11)                            NOT NULL,
-    code        nvarchar(6)                             NOT NULL,
-    create_ip   nvarchar(15)                            NOT NULL,
-    scene       tinyint                                 NOT NULL,
-    today_index tinyint                                 NOT NULL,
-    used        tinyint                                 NOT NULL,
-    used_time   datetime2     DEFAULT NULL              NULL,
-    used_ip     nvarchar(255) DEFAULT NULL              NULL,
-    creator     nvarchar(64)  DEFAULT ''                NULL,
-    create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater     nvarchar(64)  DEFAULT ''                NULL,
-    update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
-GO
-
-CREATE INDEX idx_system_sms_code_01 ON system_sms_code (mobile)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'手机号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'mobile'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'验证码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建 IP',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'create_ip'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送场景',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'scene'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'今日发送的第几条',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'today_index'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否使用',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'used'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'使用时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'used_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'使用 IP',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'used_ip'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'手机验证码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_code'
-GO
-
--- ----------------------------
--- Table structure for system_sms_log
--- ----------------------------
-DROP TABLE IF EXISTS system_sms_log
-GO
-CREATE TABLE system_sms_log
-(
-    id               bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    channel_id       bigint                                  NOT NULL,
-    channel_code     nvarchar(63)                            NOT NULL,
-    template_id      bigint                                  NOT NULL,
-    template_code    nvarchar(63)                            NOT NULL,
-    template_type    tinyint                                 NOT NULL,
-    template_content nvarchar(255)                           NOT NULL,
-    template_params  nvarchar(255)                           NOT NULL,
-    api_template_id  nvarchar(63)                            NOT NULL,
-    mobile           nvarchar(11)                            NOT NULL,
-    user_id          bigint        DEFAULT NULL              NULL,
-    user_type        tinyint       DEFAULT NULL              NULL,
-    send_status      tinyint       DEFAULT 0                 NOT NULL,
-    send_time        datetime2     DEFAULT NULL              NULL,
-    api_send_code    nvarchar(63)  DEFAULT NULL              NULL,
-    api_send_msg     nvarchar(255) DEFAULT NULL              NULL,
-    api_request_id   nvarchar(255) DEFAULT NULL              NULL,
-    api_serial_no    nvarchar(255) DEFAULT NULL              NULL,
-    receive_status   tinyint       DEFAULT 0                 NOT NULL,
-    receive_time     datetime2     DEFAULT NULL              NULL,
-    api_receive_code nvarchar(63)  DEFAULT NULL              NULL,
-    api_receive_msg  nvarchar(255) DEFAULT NULL              NULL,
-    creator          nvarchar(64)  DEFAULT ''                NULL,
-    create_time      datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater          nvarchar(64)  DEFAULT ''                NULL,
-    update_time      datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted          bit           DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信渠道编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'channel_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信渠道编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'channel_code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'template_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'template_code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'template_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信内容',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'template_content'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信参数',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'template_params'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 的模板编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_template_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'手机号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'mobile'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'user_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'user_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'send_status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'发送时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'send_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 发送结果的编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_send_code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 发送失败的提示',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_send_msg'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 发送返回的唯一请求 ID',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_request_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 发送返回的序号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_serial_no'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'接收状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'receive_status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'接收时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'receive_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'API 接收结果的编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_receive_code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'API 接收结果的说明',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'api_receive_msg'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信日志',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_log'
-GO
-
--- ----------------------------
--- Table structure for system_sms_template
--- ----------------------------
-DROP TABLE IF EXISTS system_sms_template
-GO
-CREATE TABLE system_sms_template
-(
-    id              bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    type            tinyint                                 NOT NULL,
-    status          tinyint                                 NOT NULL,
-    code            nvarchar(63)                            NOT NULL,
-    name            nvarchar(63)                            NOT NULL,
-    content         nvarchar(255)                           NOT NULL,
-    params          nvarchar(255)                           NOT NULL,
-    remark          nvarchar(255) DEFAULT NULL              NULL,
-    api_template_id nvarchar(63)                            NOT NULL,
-    channel_id      bigint                                  NOT NULL,
-    channel_code    nvarchar(63)                            NOT NULL,
-    creator         nvarchar(64)  DEFAULT ''                NULL,
-    create_time     datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater         nvarchar(64)  DEFAULT ''                NULL,
-    update_time     datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted         bit           DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'开启状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板名称',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'name'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'模板内容',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'content'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'参数数组',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'params'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'备注',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'remark'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信 API 的模板编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'api_template_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信渠道编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'channel_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信渠道编码',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'channel_code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'短信模板',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_sms_template'
-GO
-
--- ----------------------------
--- Records of system_sms_template
--- ----------------------------
--- @formatter:off
-BEGIN TRANSACTION
-GO
-SET IDENTITY_INSERT system_sms_template ON
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (2, 1, 0, N'test_01', N'测试验证码短信', N'正在进行登录操作{operation}，您的验证码是{code}', N'["operation","code"]', N'测试备注', N'4383920', 4, N'DEBUG_DING_TALK', N'', N'2021-03-31 10:49:38', N'1', N'2024-08-18 11:57:18', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (3, 1, 0, N'test_02', N'公告通知', N'您的验证码{code}，该验证码5分钟内有效，请勿泄漏于他人！', N'["code"]', NULL, N'SMS_207945135', 2, N'ALIYUN', N'', N'2021-03-31 11:56:30', N'1', N'2021-04-10 01:22:02', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (6, 3, 0, N'test-01', N'测试模板', N'哈哈哈 {name}', N'["name"]', N'f哈哈哈', N'4383920', 4, N'DEBUG_DING_TALK', N'1', N'2021-04-10 01:07:21', N'1', N'2024-08-18 11:57:07', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (7, 3, 0, N'test-04', N'测试下', N'老鸡{name}，牛逼{code}', N'["name","code"]', N'哈哈哈哈', N'suibian', 7, N'DEBUG_DING_TALK', N'1', N'2021-04-13 00:29:53', N'1', N'2024-09-30 00:56:24', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (8, 1, 0, N'user-sms-login', N'前台用户短信登录', N'您的验证码是{code}', N'["code"]', NULL, N'4372216', 4, N'DEBUG_DING_TALK', N'1', N'2021-10-11 08:10:00', N'1', N'2024-08-18 11:57:06', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (9, 2, 0, N'bpm_task_assigned', N'【工作流】任务被分配', N'您收到了一条新的待办任务：{processInstanceName}-{taskName}，申请人：{startUserNickname}，处理链接：{detailUrl}', N'["processInstanceName","taskName","startUserNickname","detailUrl"]', NULL, N'suibian', 4, N'DEBUG_DING_TALK', N'1', N'2022-01-21 22:31:19', N'1', N'2022-01-22 00:03:36', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (10, 2, 0, N'bpm_process_instance_reject', N'【工作流】流程被不通过', N'您的流程被审批不通过：{processInstanceName}，原因：{reason}，查看链接：{detailUrl}', N'["processInstanceName","reason","detailUrl"]', NULL, N'suibian', 4, N'DEBUG_DING_TALK', N'1', N'2022-01-22 00:03:31', N'1', N'2022-05-01 12:33:14', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (11, 2, 0, N'bpm_process_instance_approve', N'【工作流】流程被通过', N'您的流程被审批通过：{processInstanceName}，查看链接：{detailUrl}', N'["processInstanceName","detailUrl"]', NULL, N'suibian', 4, N'DEBUG_DING_TALK', N'1', N'2022-01-22 00:04:31', N'1', N'2022-03-27 20:32:21', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (12, 2, 0, N'demo', N'演示模板', N'我就是测试一下下', N'[]', NULL, N'biubiubiu', 4, N'DEBUG_DING_TALK', N'1', N'2022-04-10 23:22:49', N'1', N'2024-08-18 11:57:04', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (14, 1, 0, N'user-update-mobile', N'会员用户 - 修改手机', N'您的验证码{code}，该验证码 5 分钟内有效，请勿泄漏于他人！', N'["code"]', N'', N'null', 4, N'DEBUG_DING_TALK', N'1', N'2023-08-19 18:58:01', N'1', N'2023-08-19 11:34:04', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (15, 1, 0, N'user-update-password', N'会员用户 - 修改密码', N'您的验证码{code}，该验证码 5 分钟内有效，请勿泄漏于他人！', N'["code"]', N'', N'null', 4, N'DEBUG_DING_TALK', N'1', N'2023-08-19 18:58:01', N'1', N'2023-08-19 11:34:18', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (16, 1, 0, N'user-reset-password', N'会员用户 - 重置密码', N'您的验证码{code}，该验证码 5 分钟内有效，请勿泄漏于他人！', N'["code"]', N'', N'null', 4, N'DEBUG_DING_TALK', N'1', N'2023-08-19 18:58:01', N'1', N'2023-12-02 22:35:27', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (17, 2, 0, N'bpm_task_timeout', N'【工作流】任务审批超时', N'您收到了一条超时的待办任务：{processInstanceName}-{taskName}，处理链接：{detailUrl}', N'["processInstanceName","taskName","detailUrl"]', N'', N'X', 4, N'DEBUG_DING_TALK', N'1', N'2024-08-16 21:59:15', N'1', N'2024-08-16 21:59:34', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (18, 1, 0, N'admin-reset-password', N'后台用户 - 忘记密码', N'您的验证码{code}，该验证码 5 分钟内有效，请勿泄漏于他人！', N'["code"]', N'', N'null', 4, N'DEBUG_DING_TALK', N'1', N'2025-03-16 14:19:34', N'1', N'2025-03-16 14:19:45', N'0')
-GO
-INSERT INTO system_sms_template (id, type, status, code, name, content, params, remark, api_template_id, channel_id, channel_code, creator, create_time, updater, update_time, deleted) VALUES (19, 1, 0, N'admin-sms-login', N'后台用户短信登录', N'您的验证码是{code}', N'["code"]', N'', N'4372216', 4, N'DEBUG_DING_TALK', N'1', N'2025-04-08 09:36:03', N'1', N'2025-04-08 09:36:17', N'0')
-GO
-SET IDENTITY_INSERT system_sms_template OFF
-GO
-COMMIT
-GO
--- @formatter:on
-
--- ----------------------------
--- Table structure for system_social_client
--- ----------------------------
-DROP TABLE IF EXISTS system_social_client
-GO
-CREATE TABLE system_social_client
-(
-    id            bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    name          nvarchar(255)                           NOT NULL,
-    social_type   tinyint                                 NOT NULL,
-    user_type     tinyint                                 NOT NULL,
-    client_id     nvarchar(255)                           NOT NULL,
-    client_secret nvarchar(2048)                           NOT NULL,
-    public_key    nvarchar(2048) DEFAULT NULL              NULL,
-    agent_id      nvarchar(255) DEFAULT NULL              NULL,
-    status        tinyint                                 NOT NULL,
-    creator       nvarchar(64)  DEFAULT ''                NULL,
-    create_time   datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater       nvarchar(64)  DEFAULT ''                NULL,
-    update_time   datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted       bit           DEFAULT 0                 NOT NULL,
-    tenant_id     bigint        DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'应用名',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'name'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交平台的类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'social_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'user_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'客户端编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'client_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'客户端密钥',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'client_secret'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'publicKey公钥',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'public_key'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'代理编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'agent_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'状态',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'status'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交客户端表',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_client'
-GO
-
--- ----------------------------
--- Records of system_social_client
--- ----------------------------
--- @formatter:off
-BEGIN TRANSACTION
-GO
-SET IDENTITY_INSERT system_social_client ON
-GO
-INSERT INTO system_social_client (id, name, social_type, user_type, client_id, client_secret, agent_id, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'钉钉', 20, 2, N'dingvrnreaje3yqvzhxg', N'i8E6iZyDvZj51JIb0tYsYfVQYOks9Cq1lgryEjFRqC79P3iJcrxEwT6Qk2QvLrLI', NULL, 0, N'', N'2023-10-18 11:21:18', N'1', N'2023-12-20 21:28:26', N'1', 1)
-GO
-INSERT INTO system_social_client (id, name, social_type, user_type, client_id, client_secret, agent_id, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'钉钉（王土豆）', 20, 2, N'dingtsu9hpepjkbmthhw', N'FP_bnSq_HAHKCSncmJjw5hxhnzs6vaVDSZZn3egj6rdqTQ_hu5tQVJyLMpgCakdP', NULL, 0, N'', N'2023-10-18 11:21:18', N'', N'2023-12-20 21:28:26', N'1', 121)
-GO
-INSERT INTO system_social_client (id, name, social_type, user_type, client_id, client_secret, agent_id, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3, N'微信公众号', 31, 1, N'wx5b23ba7a5589ecbb', N'2a7b3b20c537e52e74afd395eb85f61f', NULL, 0, N'', N'2023-10-18 16:07:46', N'1', N'2023-12-20 21:28:23', N'1', 1)
-GO
-INSERT INTO system_social_client (id, name, social_type, user_type, client_id, client_secret, agent_id, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (43, N'微信小程序', 34, 1, N'wx63c280fe3248a3e7', N'6f270509224a7ae1296bbf1c8cb97aed', NULL, 0, N'', N'2023-10-19 13:37:41', N'1', N'2023-12-20 21:28:25', N'1', 1)
-GO
-INSERT INTO system_social_client (id, name, social_type, user_type, client_id, client_secret, agent_id, status, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (44, N'1', 10, 1, N'2', N'3', NULL, 0, N'1', N'2025-04-06 20:36:28', N'1', N'2025-04-06 20:43:12', N'1', 1)
-GO
-SET IDENTITY_INSERT system_social_client OFF
-GO
-COMMIT
-GO
--- @formatter:on
-
--- ----------------------------
--- Table structure for system_social_user
--- ----------------------------
-DROP TABLE IF EXISTS system_social_user
-GO
-CREATE TABLE system_social_user
-(
-    id             bigint                                  NOT NULL PRIMARY KEY IDENTITY,
-    type           tinyint                                 NOT NULL,
-    openid         nvarchar(32)                            NOT NULL,
-    token          nvarchar(256) DEFAULT NULL              NULL,
-    raw_token_info nvarchar(1024)                          NOT NULL,
-    nickname       nvarchar(32)                            NOT NULL,
-    avatar         nvarchar(255) DEFAULT NULL              NULL,
-    raw_user_info  nvarchar(1024)                          NOT NULL,
-    code           nvarchar(256)                           NOT NULL,
-    state          nvarchar(256) DEFAULT NULL              NULL,
-    creator        nvarchar(64)  DEFAULT ''                NULL,
-    create_time    datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater        nvarchar(64)  DEFAULT ''                NULL,
-    update_time    datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted        bit           DEFAULT 0                 NOT NULL,
-    tenant_id      bigint        DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'主键 ( 自增策略)',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交平台的类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交 openid',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'openid'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交 token',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'token'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'原始 Token 数据，一般是 JSON 格式',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'raw_token_info'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户昵称',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'nickname'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户头像',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'avatar'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'原始用户数据，一般是 JSON 格式',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'raw_user_info'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'最后一次的认证 code',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'code'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'最后一次的认证 state',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'state'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交用户表',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user'
-GO
-
--- ----------------------------
--- Table structure for system_social_user_bind
--- ----------------------------
-DROP TABLE IF EXISTS system_social_user_bind
-GO
-CREATE TABLE system_social_user_bind
-(
-    id             bigint                                 NOT NULL PRIMARY KEY IDENTITY,
-    user_id        bigint                                 NOT NULL,
-    user_type      tinyint                                NOT NULL,
-    social_type    tinyint                                NOT NULL,
-    social_user_id bigint                                 NOT NULL,
-    creator        nvarchar(64) DEFAULT ''                NULL,
-    create_time    datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updater        nvarchar(64) DEFAULT ''                NULL,
-    update_time    datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted        bit          DEFAULT 0                 NOT NULL,
-    tenant_id      bigint       DEFAULT 0                 NOT NULL
-)
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'主键 ( 自增策略)',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'user_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'用户类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'user_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交平台的类型',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'social_type'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交用户的编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'social_user_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'creator'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'创建时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'create_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新者',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'updater'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'更新时间',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'update_time'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'是否删除',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'deleted'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
-     'MS_Description', N'社交绑定表',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_social_user_bind'
-GO
-
--- ----------------------------
--- Table structure for system_tenant
--- ----------------------------
-DROP TABLE IF EXISTS system_tenant
-GO
-CREATE TABLE system_tenant
 (
     id              bigint                                  NOT NULL PRIMARY KEY IDENTITY,
     name            nvarchar(30)                            NOT NULL,
@@ -10859,140 +7950,115 @@ GO
 EXEC sp_addextendedproperty
      'MS_Description', N'租户编号',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'id'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'租户名',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'name'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'联系人的用户编号',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'contact_user_id'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'联系人',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'contact_name'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'联系手机',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'contact_mobile'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'租户状态（0正常 1停用）',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'status'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'绑定域名',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'website'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'租户套餐编号',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'package_id'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'过期时间',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'expire_time'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'账号数量',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'account_count'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'创建者',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'creator'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'创建时间',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'create_time'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'更新者',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'updater'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'更新时间',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'update_time'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'是否删除',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant',
      'COLUMN', N'deleted'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'租户表',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant'
 GO
 
 -- ----------------------------
--- Records of system_tenant
 -- ----------------------------
 -- @formatter:off
 BEGIN TRANSACTION
 GO
-SET IDENTITY_INSERT system_tenant ON
 GO
-INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobile, status, websites, package_id, expire_time, account_count, creator, create_time, updater, update_time, deleted) VALUES (1, N'芋道源码', NULL, N'芋艿', N'17321315478', 0, N'www.iocoder.cn', 0, N'2099-02-19 17:14:16', 9999, N'1', N'2021-01-05 17:03:47', N'1', N'2023-11-06 11:41:41', N'0')
 GO
-INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobile, status, websites, package_id, expire_time, account_count, creator, create_time, updater, update_time, deleted) VALUES (121, N'小租户', 110, N'小王2', N'15601691300', 0, N'zsxq.iocoder.cn', 111, N'2026-07-10 00:00:00', 30, N'1', N'2022-02-22 00:56:14', N'1', N'2025-04-03 21:33:01', N'0')
 GO
-INSERT INTO system_tenant (id, name, contact_user_id, contact_name, contact_mobile, status, websites, package_id, expire_time, account_count, creator, create_time, updater, update_time, deleted) VALUES (122, N'测试租户', 113, N'芋道', N'15601691300', 0, N'test.iocoder.cn', 111, N'2022-04-29 00:00:00', 50, N'1', N'2022-03-07 21:37:58', N'1', N'2024-09-22 12:10:50', N'0')
 GO
-SET IDENTITY_INSERT system_tenant OFF
 GO
 COMMIT
 GO
 -- @formatter:on
 
 -- ----------------------------
--- Table structure for system_tenant_package
 -- ----------------------------
-DROP TABLE IF EXISTS system_tenant_package
 GO
-CREATE TABLE system_tenant_package
 (
     id          bigint                                  NOT NULL PRIMARY KEY IDENTITY,
     name        nvarchar(30)                            NOT NULL,
@@ -11010,92 +8076,76 @@ GO
 EXEC sp_addextendedproperty
      'MS_Description', N'套餐编号',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'id'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'套餐名',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'name'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'租户状态（0正常 1停用）',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'status'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'备注',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'remark'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'关联的菜单编号',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'menu_ids'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'创建者',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'creator'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'创建时间',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'create_time'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'更新者',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'updater'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'更新时间',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'update_time'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'是否删除',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package',
      'COLUMN', N'deleted'
 GO
 
 EXEC sp_addextendedproperty
      'MS_Description', N'租户套餐表',
      'SCHEMA', N'dbo',
-     'TABLE', N'system_tenant_package'
 GO
 
 -- ----------------------------
--- Records of system_tenant_package
 -- ----------------------------
 -- @formatter:off
 BEGIN TRANSACTION
 GO
-SET IDENTITY_INSERT system_tenant_package ON
 GO
-INSERT INTO system_tenant_package (id, name, status, remark, menu_ids, creator, create_time, updater, update_time, deleted) VALUES (111, N'普通套餐', 0, N'小功能', N'[1,2,5,1031,1032,1033,1034,1035,1036,1037,1038,1039,1050,1051,1052,1053,1054,1056,1057,1058,1059,1060,1063,1064,1065,1066,1067,1070,1075,1077,1078,1082,1083,1084,1085,1086,1087,1088,1089,1090,1091,1092,1118,1119,1120,100,101,102,103,106,107,110,111,112,113,1138,114,1139,115,1140,116,1141,1142,1143,2713,2714,2715,2716,2717,2718,2720,1185,2721,1186,2722,1187,2723,1188,2724,1189,2725,1190,2726,1191,2727,2472,1192,2728,1193,2729,1194,2730,1195,2731,1196,2732,1197,2733,2478,1198,2734,2479,1199,2735,2480,1200,2481,1201,2482,1202,2483,2739,2484,2740,2485,2486,2487,1207,2488,1208,2489,1209,2490,1210,2491,1211,2492,1212,2493,1213,2494,2495,1215,1216,2497,1217,1218,1219,1220,1221,1222,1224,1225,1226,1227,1228,1229,1237,1238,1239,1240,1241,1242,1243,2525,1255,1256,1001,1257,1002,1258,1003,1259,1004,1260,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020]', N'1', N'2022-02-22 00:54:00', N'1', N'2024-07-13 22:37:24', N'0')
 GO
-INSERT INTO system_tenant_package (id, name, status, remark, menu_ids, creator, create_time, updater, update_time, deleted) VALUES (112, N'再来一个套餐', 0, N'1234', N'[1024,1,1025,1026,2,1027,1028,1029,1030,1031,1032,1033,1034,1035,1036,1037,1038,1039,1040,1042,1043,1045,1046,1048,1050,1051,1052,1053,1054,1056,1057,1058,2083,1059,1060,1063,1064,1065,1066,1067,1070,1075,1077,1078,1082,1083,1084,1085,1086,1087,1088,1089,1090,1091,1092,1093,1094,1095,1096,1097,1098,1100,1101,1102,1103,1104,1105,1106,2130,1107,2131,1108,2132,1109,2133,2134,2135,2136,2137,2138,2139,2140,2141,2142,2143,2144,2145,2146,2147,100,2148,101,2149,102,2150,103,2151,104,2152,105,106,107,108,109,110,111,112,113,1138,114,1139,115,1140,116,1141,1142,1143,2739,2740,1224,1225,1226,1227,1228,1229,1237,1238,1239,1240,1241,1242,1243,1255,1256,1257,1258,1259,1260,1261,1263,1264,1265,1266,1267,2447,2448,2449,2450,2451,2452,2453,2472,2478,2479,2480,2481,2482,2483,2484,2485,2486,2487,2488,2489,2490,2491,2492,2493,2494,2495,2497,2525,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,500,1013,501,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023]', N'1', N'2025-04-04 08:15:02', N'1', N'2025-04-04 08:15:21', N'0')
 GO
-SET IDENTITY_INSERT system_tenant_package OFF
 GO
 COMMIT
 GO
@@ -11115,9 +8165,7 @@ CREATE TABLE system_user_post
     create_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64) DEFAULT ''                NULL,
     update_time datetime2    DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit          DEFAULT 0                 NOT NULL,
-    tenant_id   bigint       DEFAULT 0                 NOT NULL
-)
+    deleted     bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -11177,13 +8225,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_user_post',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'用户岗位表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_user_post'
@@ -11197,24 +8238,15 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_user_post ON
 GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (112, 1, 1, N'admin', N'2022-05-02 07:25:24', N'admin', N'2022-05-02 07:25:24', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (113, 100, 1, N'admin', N'2022-05-02 07:25:24', N'admin', N'2022-05-02 07:25:24', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (115, 104, 1, N'1', N'2022-05-16 19:36:28', N'1', N'2022-05-16 19:36:28', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (116, 117, 2, N'1', N'2022-07-09 17:40:26', N'1', N'2022-07-09 17:40:26', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (117, 118, 1, N'1', N'2022-07-09 17:44:44', N'1', N'2022-07-09 17:44:44', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (119, 114, 5, N'1', N'2024-03-24 20:45:51', N'1', N'2024-03-24 20:45:51', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (123, 115, 1, N'1', N'2024-04-04 09:37:14', N'1', N'2024-04-04 09:37:14', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (124, 115, 2, N'1', N'2024-04-04 09:37:14', N'1', N'2024-04-04 09:37:14', N'0', 1)
-GO
-INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (125, 1, 2, N'1', N'2024-07-13 22:31:39', N'1', N'2024-07-13 22:31:39', N'0', 1)
-GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (112, 1, 1, N'admin', N'2022-05-02 07:25:24', N'admin', N'2022-05-02 07:25:24', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (113, 100, 1, N'admin', N'2022-05-02 07:25:24', N'admin', N'2022-05-02 07:25:24', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (115, 104, 1, N'1', N'2022-05-16 19:36:28', N'1', N'2022-05-16 19:36:28', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (116, 117, 2, N'1', N'2022-07-09 17:40:26', N'1', N'2022-07-09 17:40:26', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (117, 118, 1, N'1', N'2022-07-09 17:44:44', N'1', N'2022-07-09 17:44:44', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (119, 114, 5, N'1', N'2024-03-24 20:45:51', N'1', N'2024-03-24 20:45:51', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (123, 115, 1, N'1', N'2024-04-04 09:37:14', N'1', N'2024-04-04 09:37:14', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (124, 115, 2, N'1', N'2024-04-04 09:37:14', N'1', N'2024-04-04 09:37:14', N'0')GO
+INSERT INTO system_user_post (id, user_id, post_id, creator, create_time, updater, update_time, deleted) VALUES (125, 1, 2, N'1', N'2024-07-13 22:31:39', N'1', N'2024-07-13 22:31:39', N'0')GO
 SET IDENTITY_INSERT system_user_post OFF
 GO
 COMMIT
@@ -11235,9 +8267,7 @@ CREATE TABLE system_user_role
     create_time datetime2    DEFAULT CURRENT_TIMESTAMP NULL,
     updater     nvarchar(64) DEFAULT ''                NULL,
     update_time datetime2    DEFAULT CURRENT_TIMESTAMP NULL,
-    deleted     bit          DEFAULT 0                 NOT NULL,
-    tenant_id   bigint       DEFAULT 0                 NOT NULL
-)
+    deleted     bit          DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -11297,13 +8327,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_user_role',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'用户和角色关联表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_user_role'
@@ -11317,40 +8340,23 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_user_role ON
 GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, 1, 1, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:17', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, 2, 2, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:13', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4, 100, 101, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:13', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5, 100, 1, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:12', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6, 100, 2, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:11', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (10, 103, 1, N'1', N'2022-01-11 13:19:45', N'1', N'2022-01-11 13:19:45', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (14, 110, 109, N'1', N'2022-02-22 00:56:14', N'1', N'2022-02-22 00:56:14', N'0', 121)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (15, 111, 110, N'110', N'2022-02-23 13:14:38', N'110', N'2022-02-23 13:14:38', N'0', 121)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (16, 113, 111, N'1', N'2022-03-07 21:37:58', N'1', N'2022-03-07 21:37:58', N'0', 122)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (18, 1, 2, N'1', N'2022-05-12 20:39:29', N'1', N'2022-05-12 20:39:29', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (22, 115, 2, N'1', N'2022-07-21 22:08:30', N'1', N'2022-07-21 22:08:30', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (35, 112, 1, N'1', N'2024-03-15 20:00:24', N'1', N'2024-03-15 20:00:24', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (36, 118, 1, N'1', N'2024-03-17 09:12:08', N'1', N'2024-03-17 09:12:08', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (38, 114, 101, N'1', N'2024-03-24 22:23:03', N'1', N'2024-03-24 22:23:03', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (46, 117, 1, N'1', N'2024-10-02 10:16:11', N'1', N'2024-10-02 10:16:11', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (47, 104, 2, N'1', N'2025-01-04 10:40:33', N'1', N'2025-01-04 10:40:33', N'0', 1)
-GO
-INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (48, 100, 155, N'1', N'2025-04-04 10:41:14', N'1', N'2025-04-04 10:41:14', N'0', 1)
-GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (1, 1, 1, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:17', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (2, 2, 2, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:13', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (4, 100, 101, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:13', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (5, 100, 1, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:12', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (6, 100, 2, N'', N'2022-01-11 13:19:45', N'', N'2022-05-12 12:35:11', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (10, 103, 1, N'1', N'2022-01-11 13:19:45', N'1', N'2022-01-11 13:19:45', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (14, 110, 109, N'1', N'2022-02-22 00:56:14', N'1', N'2022-02-22 00:56:14', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (15, 111, 110, N'110', N'2022-02-23 13:14:38', N'110', N'2022-02-23 13:14:38', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (16, 113, 111, N'1', N'2022-03-07 21:37:58', N'1', N'2022-03-07 21:37:58', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (18, 1, 2, N'1', N'2022-05-12 20:39:29', N'1', N'2022-05-12 20:39:29', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (22, 115, 2, N'1', N'2022-07-21 22:08:30', N'1', N'2022-07-21 22:08:30', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (35, 112, 1, N'1', N'2024-03-15 20:00:24', N'1', N'2024-03-15 20:00:24', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (36, 118, 1, N'1', N'2024-03-17 09:12:08', N'1', N'2024-03-17 09:12:08', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (38, 114, 101, N'1', N'2024-03-24 22:23:03', N'1', N'2024-03-24 22:23:03', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (46, 117, 1, N'1', N'2024-10-02 10:16:11', N'1', N'2024-10-02 10:16:11', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (47, 104, 2, N'1', N'2025-01-04 10:40:33', N'1', N'2025-01-04 10:40:33', N'0')GO
+INSERT INTO system_user_role (id, user_id, role_id, creator, create_time, updater, update_time, deleted) VALUES (48, 100, 155, N'1', N'2025-04-04 10:41:14', N'1', N'2025-04-04 10:41:14', N'0')GO
 SET IDENTITY_INSERT system_user_role OFF
 GO
 COMMIT
@@ -11382,9 +8388,7 @@ CREATE TABLE system_users
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -11521,13 +8525,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'system_users',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'用户信息表',
      'SCHEMA', N'dbo',
      'TABLE', N'system_users'
@@ -11541,42 +8538,24 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT system_users ON
 GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'admin', N'$2a$04$KljJDa/LK7QfDm0lF5OhuePhlPfjRH3tB2Wu351Uidz.oQGJXevPi', N'芋道源码', N'管理员', 103, N'[1,2]', N'11aoteman@126.com', N'18818260277', 2, N'http://test.yudao.iocoder.cn/test/20250502/avatar_1746154660449.png', 0, N'0:0:0:0:0:0:0:1', N'2025-05-10 18:03:15', N'admin', N'2021-01-05 17:03:47', NULL, N'2025-05-10 18:03:15', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (100, N'yudao', N'$2a$04$h.aaPKgO.odHepnk5PCsWeEwKdojFWdTItxGKfx1r0e1CSeBzsTJ6', N'芋道', N'不要吓我', 104, N'[1]', N'yudao@iocoder.cn', N'15601691300', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2025-04-08 09:36:40', N'', N'2021-01-07 09:07:17', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (103, N'yuanma', N'$2a$04$fUBSmjKCPYAUmnMzOb6qE.eZCGPhHi1JmAKclODbfS/O7fHOl2bH6', N'源码', NULL, 106, NULL, N'yuanma@iocoder.cn', N'15601701300', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-08-11 17:48:12', N'', N'2021-01-13 23:50:35', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (104, N'test', N'$2a$04$BrwaYn303hjA/6TnXqdGoOLhyHOAA0bVrAFu6.1dJKycqKUnIoRz2', N'测试号', NULL, 107, N'[1,2]', N'111@qq.com', N'15601691200', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2025-03-28 20:01:16', N'', N'2021-01-21 02:13:53', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (107, N'admin107', N'$2a$10$dYOOBKMO93v/.ReCqzyFg.o67Tqk.bbc2bhrpyBGkIw9aypCtr2pm', N'芋艿', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'', NULL, N'1', N'2022-02-20 22:59:33', N'1', N'2025-04-21 14:23:08', N'0', 118)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (108, N'admin108', N'$2a$10$y6mfvKoNYL1GXWak8nYwVOH.kCWqjactkzdoIDgiKl93WN3Ejg.Lu', N'芋艿', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'', NULL, N'1', N'2022-02-20 23:00:50', N'1', N'2025-04-21 14:23:08', N'0', 119)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (109, N'admin109', N'$2a$10$JAqvH0tEc0I7dfDVBI7zyuB4E3j.uH6daIjV53.vUS6PknFkDJkuK', N'芋艿', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'', NULL, N'1', N'2022-02-20 23:11:50', N'1', N'2025-04-21 14:23:08', N'0', 120)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (110, N'admin110', N'$2a$10$mRMIYLDtRHlf6.9ipiqH1.Z.bh/R9dO9d5iHiGYPigi6r5KOoR2Wm', N'小王', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-07-20 22:23:17', N'1', N'2022-02-22 00:56:14', NULL, N'2025-04-21 14:23:08', N'0', 121)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (111, N'test', N'$2a$10$mRMIYLDtRHlf6.9ipiqH1.Z.bh/R9dO9d5iHiGYPigi6r5KOoR2Wm', N'测试用户', NULL, NULL, N'[]', N'', N'', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2023-12-30 11:42:17', N'110', N'2022-02-23 13:14:33', NULL, N'2025-04-21 14:23:08', N'0', 121)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (112, N'newobject', N'$2a$04$dB0z8Q819fJWz0hbaLe6B.VfHCjYgWx6LFfET5lyz3JwcqlyCkQ4C', N'新对象', NULL, 100, N'[]', N'', N'15601691235', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-03-16 23:11:38', N'1', N'2022-02-23 19:08:03', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (113, N'aoteman', N'$2a$10$0acJOIk2D25/oC87nyclE..0lzeu9DtQ/n3geP4fkun/zIVRhHJIO', N'芋道1', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'127.0.0.1', N'2022-03-19 18:38:51', N'1', N'2022-03-07 21:37:58', N'1', N'2025-05-05 15:30:53', N'0', 122)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (114, N'hrmgr', N'$2a$10$TR4eybBioGRhBmDBWkqWLO6NIh3mzYa8KBKDDB5woiGYFVlRAi.fu', N'hr 小姐姐', NULL, NULL, N'[5]', N'', N'15601691236', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-03-24 22:21:05', N'1', N'2022-03-19 21:50:58', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (115, N'aotemane', N'$2a$04$GcyP0Vyzb2F2Yni5PuIK9ueGxM0tkZGMtDwVRwrNbtMvorzbpNsV2', N'阿呆', N'11222', 102, N'[1,2]', N'7648@qq.com', N'15601691229', 2, NULL, 0, N'', NULL, N'1', N'2022-04-30 02:55:43', N'1', N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (117, N'admin123', N'$2a$04$sEtimsHu9YCkYY4/oqElHem2Ijc9ld20eYO6lN.g/21NfLUTDLB9W', N'测试号02', N'1111', 100, N'[2]', N'', N'15601691234', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-10-02 10:16:20', N'1', N'2022-07-09 17:40:26', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (118, N'goudan', N'$2a$04$jth0yOj8cSJq84D6vrzusOHDwW/LpBfgBnQ6bfFlD8zNZfM632Ta2', N'狗蛋', NULL, 103, N'[1]', N'', N'15601691239', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-03-17 09:10:27', N'1', N'2022-07-09 17:44:43', N'1', N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (131, N'hh', N'$2a$04$jyH9h6.gaw8mpOjPfHIpx.8as2Rzfcmdlj5rlJFwgCw4rsv/MTb2K', N'呵呵', NULL, 100, N'[]', N'777@qq.com', N'15601882312', 1, NULL, 0, N'', NULL, N'1', N'2024-04-27 08:45:56', N'1', N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (139, N'wwbwwb', N'$2a$04$aOHoFbQU6zfBk/1Z9raF/ugTdhjNdx7culC1HhO0zvoczAnahCiMq', N'小秃头', NULL, NULL, NULL, N'', N'', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-09-10 21:03:58', NULL, N'2024-09-10 21:03:58', NULL, N'2025-04-21 14:23:08', N'0', 1)
-GO
-INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (141, N'admin1', N'$2a$04$oj6F6d7HrZ70kYVD3TNzEu.m3TPUzajOVuC66zdKna8KRerK1FmVa', N'新用户', NULL, NULL, NULL, N'', N'', 0, N'', 0, N'0:0:0:0:0:0:0:1', N'2025-04-08 13:09:07', N'1', N'2025-04-08 13:09:07', N'1', N'2025-04-08 13:09:07', N'0', 1)
-GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (1, N'admin', N'$2a$04$KljJDa/LK7QfDm0lF5OhuePhlPfjRH3tB2Wu351Uidz.oQGJXevPi', N'芋道源码', N'管理员', 103, N'[1,2]', N'11aoteman@126.com', N'18818260277', 2, N'http://test.yudao.iocoder.cn/test/20250502/avatar_1746154660449.png', 0, N'0:0:0:0:0:0:0:1', N'2025-05-10 18:03:15', N'admin', N'2021-01-05 17:03:47', NULL, N'2025-05-10 18:03:15', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (100, N'yudao', N'$2a$04$h.aaPKgO.odHepnk5PCsWeEwKdojFWdTItxGKfx1r0e1CSeBzsTJ6', N'芋道', N'不要吓我', 104, N'[1]', N'yudao@iocoder.cn', N'15601691300', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2025-04-08 09:36:40', N'', N'2021-01-07 09:07:17', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (103, N'yuanma', N'$2a$04$fUBSmjKCPYAUmnMzOb6qE.eZCGPhHi1JmAKclODbfS/O7fHOl2bH6', N'源码', NULL, 106, NULL, N'yuanma@iocoder.cn', N'15601701300', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-08-11 17:48:12', N'', N'2021-01-13 23:50:35', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (104, N'test', N'$2a$04$BrwaYn303hjA/6TnXqdGoOLhyHOAA0bVrAFu6.1dJKycqKUnIoRz2', N'测试号', NULL, 107, N'[1,2]', N'111@qq.com', N'15601691200', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2025-03-28 20:01:16', N'', N'2021-01-21 02:13:53', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (107, N'admin107', N'$2a$10$dYOOBKMO93v/.ReCqzyFg.o67Tqk.bbc2bhrpyBGkIw9aypCtr2pm', N'芋艿', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'', NULL, N'1', N'2022-02-20 22:59:33', N'1', N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (108, N'admin108', N'$2a$10$y6mfvKoNYL1GXWak8nYwVOH.kCWqjactkzdoIDgiKl93WN3Ejg.Lu', N'芋艿', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'', NULL, N'1', N'2022-02-20 23:00:50', N'1', N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (109, N'admin109', N'$2a$10$JAqvH0tEc0I7dfDVBI7zyuB4E3j.uH6daIjV53.vUS6PknFkDJkuK', N'芋艿', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'', NULL, N'1', N'2022-02-20 23:11:50', N'1', N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (110, N'admin110', N'$2a$10$mRMIYLDtRHlf6.9ipiqH1.Z.bh/R9dO9d5iHiGYPigi6r5KOoR2Wm', N'小王', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-07-20 22:23:17', N'1', N'2022-02-22 00:56:14', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (111, N'test', N'$2a$10$mRMIYLDtRHlf6.9ipiqH1.Z.bh/R9dO9d5iHiGYPigi6r5KOoR2Wm', N'测试用户', NULL, NULL, N'[]', N'', N'', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2023-12-30 11:42:17', N'110', N'2022-02-23 13:14:33', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (112, N'newobject', N'$2a$04$dB0z8Q819fJWz0hbaLe6B.VfHCjYgWx6LFfET5lyz3JwcqlyCkQ4C', N'新对象', NULL, 100, N'[]', N'', N'15601691235', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-03-16 23:11:38', N'1', N'2022-02-23 19:08:03', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (113, N'aoteman', N'$2a$10$0acJOIk2D25/oC87nyclE..0lzeu9DtQ/n3geP4fkun/zIVRhHJIO', N'芋道1', NULL, NULL, NULL, N'', N'15601691300', 0, NULL, 0, N'127.0.0.1', N'2022-03-19 18:38:51', N'1', N'2022-03-07 21:37:58', N'1', N'2025-05-05 15:30:53', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (114, N'hrmgr', N'$2a$10$TR4eybBioGRhBmDBWkqWLO6NIh3mzYa8KBKDDB5woiGYFVlRAi.fu', N'hr 小姐姐', NULL, NULL, N'[5]', N'', N'15601691236', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-03-24 22:21:05', N'1', N'2022-03-19 21:50:58', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (115, N'aotemane', N'$2a$04$GcyP0Vyzb2F2Yni5PuIK9ueGxM0tkZGMtDwVRwrNbtMvorzbpNsV2', N'阿呆', N'11222', 102, N'[1,2]', N'7648@qq.com', N'15601691229', 2, NULL, 0, N'', NULL, N'1', N'2022-04-30 02:55:43', N'1', N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (117, N'admin123', N'$2a$04$sEtimsHu9YCkYY4/oqElHem2Ijc9ld20eYO6lN.g/21NfLUTDLB9W', N'测试号02', N'1111', 100, N'[2]', N'', N'15601691234', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-10-02 10:16:20', N'1', N'2022-07-09 17:40:26', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (118, N'goudan', N'$2a$04$jth0yOj8cSJq84D6vrzusOHDwW/LpBfgBnQ6bfFlD8zNZfM632Ta2', N'狗蛋', NULL, 103, N'[1]', N'', N'15601691239', 1, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-03-17 09:10:27', N'1', N'2022-07-09 17:44:43', N'1', N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (131, N'hh', N'$2a$04$jyH9h6.gaw8mpOjPfHIpx.8as2Rzfcmdlj5rlJFwgCw4rsv/MTb2K', N'呵呵', NULL, 100, N'[]', N'777@qq.com', N'15601882312', 1, NULL, 0, N'', NULL, N'1', N'2024-04-27 08:45:56', N'1', N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (139, N'wwbwwb', N'$2a$04$aOHoFbQU6zfBk/1Z9raF/ugTdhjNdx7culC1HhO0zvoczAnahCiMq', N'小秃头', NULL, NULL, NULL, N'', N'', 0, NULL, 0, N'0:0:0:0:0:0:0:1', N'2024-09-10 21:03:58', NULL, N'2024-09-10 21:03:58', NULL, N'2025-04-21 14:23:08', N'0')GO
+INSERT INTO system_users (id, username, password, nickname, remark, dept_id, post_ids, email, mobile, sex, avatar, status, login_ip, login_date, creator, create_time, updater, update_time, deleted) VALUES (141, N'admin1', N'$2a$04$oj6F6d7HrZ70kYVD3TNzEu.m3TPUzajOVuC66zdKna8KRerK1FmVa', N'新用户', NULL, NULL, NULL, N'', N'', 0, N'', 0, N'0:0:0:0:0:0:0:1', N'2025-04-08 13:09:07', N'1', N'2025-04-08 13:09:07', N'1', N'2025-04-08 13:09:07', N'0')GO
 SET IDENTITY_INSERT system_users OFF
 GO
 COMMIT
@@ -11600,9 +8579,7 @@ CREATE TABLE yudao_demo01_contact
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -11683,13 +8660,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'yudao_demo01_contact',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'示例联系人表',
      'SCHEMA', N'dbo',
      'TABLE', N'yudao_demo01_contact'
@@ -11703,8 +8673,7 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT yudao_demo01_contact ON
 GO
-INSERT INTO yudao_demo01_contact (id, name, sex, birthday, description, avatar, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'土豆', 2, N'2023-11-07 00:00:00', N'<p>天蚕土豆！呀</p>', N'http://127.0.0.1:48080/admin-api/infra/file/4/get/46f8fa1a37db3f3960d8910ff2fe3962ab3b2db87cf2f8ccb4dc8145b8bdf237.jpeg', N'1', N'2023-11-15 23:34:30', N'1', N'2023-11-15 23:47:39', N'0', 1)
-GO
+INSERT INTO yudao_demo01_contact (id, name, sex, birthday, description, avatar, creator, create_time, updater, update_time, deleted) VALUES (1, N'土豆', 2, N'2023-11-07 00:00:00', N'<p>天蚕土豆！呀</p>', N'http://127.0.0.1:48080/admin-api/infra/file/4/get/46f8fa1a37db3f3960d8910ff2fe3962ab3b2db87cf2f8ccb4dc8145b8bdf237.jpeg', N'1', N'2023-11-15 23:34:30', N'1', N'2023-11-15 23:47:39', N'0')GO
 SET IDENTITY_INSERT yudao_demo01_contact OFF
 GO
 COMMIT
@@ -11725,9 +8694,7 @@ CREATE TABLE yudao_demo02_category
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -11787,13 +8754,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'yudao_demo02_category',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'示例分类表',
      'SCHEMA', N'dbo',
      'TABLE', N'yudao_demo02_category'
@@ -11807,18 +8767,12 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT yudao_demo02_category ON
 GO
-INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (1, N'土豆', 0, N'1', N'2023-11-15 23:34:30', N'1', N'2023-11-16 20:24:23', N'0', 1)
-GO
-INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'番茄', 0, N'1', N'2023-11-16 20:24:00', N'1', N'2023-11-16 20:24:15', N'0', 1)
-GO
-INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3, N'怪怪', 0, N'1', N'2023-11-16 20:24:32', N'1', N'2023-11-16 20:24:32', N'0', 1)
-GO
-INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (4, N'小番茄', 2, N'1', N'2023-11-16 20:24:39', N'1', N'2023-11-16 20:24:39', N'0', 1)
-GO
-INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5, N'大番茄', 2, N'1', N'2023-11-16 20:24:46', N'1', N'2023-11-16 20:24:46', N'0', 1)
-GO
-INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6, N'11', 3, N'1', N'2023-11-24 19:29:34', N'1', N'2023-11-24 19:29:34', N'0', 1)
-GO
+INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted) VALUES (1, N'土豆', 0, N'1', N'2023-11-15 23:34:30', N'1', N'2023-11-16 20:24:23', N'0')GO
+INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted) VALUES (2, N'番茄', 0, N'1', N'2023-11-16 20:24:00', N'1', N'2023-11-16 20:24:15', N'0')GO
+INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted) VALUES (3, N'怪怪', 0, N'1', N'2023-11-16 20:24:32', N'1', N'2023-11-16 20:24:32', N'0')GO
+INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted) VALUES (4, N'小番茄', 2, N'1', N'2023-11-16 20:24:39', N'1', N'2023-11-16 20:24:39', N'0')GO
+INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted) VALUES (5, N'大番茄', 2, N'1', N'2023-11-16 20:24:46', N'1', N'2023-11-16 20:24:46', N'0')GO
+INSERT INTO yudao_demo02_category (id, name, parent_id, creator, create_time, updater, update_time, deleted) VALUES (6, N'11', 3, N'1', N'2023-11-24 19:29:34', N'1', N'2023-11-24 19:29:34', N'0')GO
 SET IDENTITY_INSERT yudao_demo02_category OFF
 GO
 COMMIT
@@ -11840,9 +8794,7 @@ CREATE TABLE yudao_demo03_course
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -11909,13 +8861,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'yudao_demo03_course',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'学生课程表',
      'SCHEMA', N'dbo',
      'TABLE', N'yudao_demo03_course'
@@ -11929,40 +8874,23 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT yudao_demo03_course ON
 GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, 2, N'语文', 66, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 10:55:30', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (3, 2, N'数学', 22, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 10:55:30', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (6, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:44:40', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (7, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:44:40', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (8, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:47:09', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (9, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:47:09', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (10, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 10:55:28', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (11, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 10:55:28', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (12, 2, N'电脑', 33, N'1', N'2023-11-17 00:20:42', N'1', N'2023-11-16 16:20:45', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (13, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2024-09-17 10:55:26', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (14, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2024-09-17 10:55:49', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (15, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (16, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (17, 2, N'语文', 66, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (18, 2, N'数学', 22, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (19, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2025-04-19 02:49:03', N'1', 1)
-GO
-INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (20, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2025-04-19 10:49:04', N'0', 1)
-GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (2, 2, N'语文', 66, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 10:55:30', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (3, 2, N'数学', 22, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 10:55:30', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (6, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:44:40', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (7, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:44:40', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (8, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:47:09', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (9, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2023-11-16 15:47:09', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (10, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 10:55:28', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (11, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 10:55:28', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (12, 2, N'电脑', 33, N'1', N'2023-11-17 00:20:42', N'1', N'2023-11-16 16:20:45', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (13, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2024-09-17 10:55:26', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (14, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2024-09-17 10:55:49', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (15, 5, N'体育', 23, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (16, 5, N'计算机', 11, N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (17, 2, N'语文', 66, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (18, 2, N'数学', 22, N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (19, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2025-04-19 02:49:03', N'1')GO
+INSERT INTO yudao_demo03_course (id, student_id, name, score, creator, create_time, updater, update_time, deleted) VALUES (20, 9, N'滑雪', 12, N'1', N'2023-11-17 13:13:20', N'1', N'2025-04-19 10:49:04', N'0')GO
 SET IDENTITY_INSERT yudao_demo03_course OFF
 GO
 COMMIT
@@ -11984,9 +8912,7 @@ CREATE TABLE yudao_demo03_grade
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -12053,13 +8979,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'yudao_demo03_grade',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'学生班级表',
      'SCHEMA', N'dbo',
      'TABLE', N'yudao_demo03_grade'
@@ -12073,12 +8992,9 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT yudao_demo03_grade ON
 GO
-INSERT INTO yudao_demo03_grade (id, student_id, name, teacher, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (7, 2, N'三年 2 班', N'周杰伦', N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0', 1)
-GO
-INSERT INTO yudao_demo03_grade (id, student_id, name, teacher, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (8, 5, N'华为', N'遥遥领先', N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0', 1)
-GO
-INSERT INTO yudao_demo03_grade (id, student_id, name, teacher, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (9, 9, N'小图', N'小娃111', N'1', N'2023-11-17 13:10:23', N'1', N'2025-04-19 10:49:04', N'0', 1)
-GO
+INSERT INTO yudao_demo03_grade (id, student_id, name, teacher, creator, create_time, updater, update_time, deleted) VALUES (7, 2, N'三年 2 班', N'周杰伦', N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0')GO
+INSERT INTO yudao_demo03_grade (id, student_id, name, teacher, creator, create_time, updater, update_time, deleted) VALUES (8, 5, N'华为', N'遥遥领先', N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0')GO
+INSERT INTO yudao_demo03_grade (id, student_id, name, teacher, creator, create_time, updater, update_time, deleted) VALUES (9, 9, N'小图', N'小娃111', N'1', N'2023-11-17 13:10:23', N'1', N'2025-04-19 10:49:04', N'0')GO
 SET IDENTITY_INSERT yudao_demo03_grade OFF
 GO
 COMMIT
@@ -12101,9 +9017,7 @@ CREATE TABLE yudao_demo03_student
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
     update_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    deleted     bit           DEFAULT 0                 NOT NULL,
-    tenant_id   bigint        DEFAULT 0                 NOT NULL
-)
+    deleted     bit           DEFAULT 0                 NOT NULL)
 GO
 
 EXEC sp_addextendedproperty
@@ -12177,13 +9091,6 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-     'MS_Description', N'租户编号',
-     'SCHEMA', N'dbo',
-     'TABLE', N'yudao_demo03_student',
-     'COLUMN', N'tenant_id'
-GO
-
-EXEC sp_addextendedproperty
      'MS_Description', N'学生表',
      'SCHEMA', N'dbo',
      'TABLE', N'yudao_demo03_student'
@@ -12197,12 +9104,9 @@ BEGIN TRANSACTION
 GO
 SET IDENTITY_INSERT yudao_demo03_student ON
 GO
-INSERT INTO yudao_demo03_student (id, name, sex, birthday, description, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (2, N'小白', 1, N'2023-11-16 00:00:00', N'<p>厉害</p>', N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0', 1)
-GO
-INSERT INTO yudao_demo03_student (id, name, sex, birthday, description, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (5, N'大黑', 2, N'2023-11-13 00:00:00', N'<p>你在教我做事?</p>', N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0', 1)
-GO
-INSERT INTO yudao_demo03_student (id, name, sex, birthday, description, creator, create_time, updater, update_time, deleted, tenant_id) VALUES (9, N'小花', 1, N'2023-11-07 00:00:00', N'<p>哈哈哈</p>', N'1', N'2023-11-17 00:04:47', N'1', N'2025-04-19 10:49:04', N'0', 1)
-GO
+INSERT INTO yudao_demo03_student (id, name, sex, birthday, description, creator, create_time, updater, update_time, deleted) VALUES (2, N'小白', 1, N'2023-11-16 00:00:00', N'<p>厉害</p>', N'1', N'2023-11-16 23:21:49', N'1', N'2024-09-17 18:55:31', N'0')GO
+INSERT INTO yudao_demo03_student (id, name, sex, birthday, description, creator, create_time, updater, update_time, deleted) VALUES (5, N'大黑', 2, N'2023-11-13 00:00:00', N'<p>你在教我做事?</p>', N'1', N'2023-11-16 23:22:46', N'1', N'2024-09-17 18:55:29', N'0')GO
+INSERT INTO yudao_demo03_student (id, name, sex, birthday, description, creator, create_time, updater, update_time, deleted) VALUES (9, N'小花', 1, N'2023-11-07 00:00:00', N'<p>哈哈哈</p>', N'1', N'2023-11-17 00:04:47', N'1', N'2025-04-19 10:49:04', N'0')GO
 SET IDENTITY_INSERT yudao_demo03_student OFF
 GO
 COMMIT

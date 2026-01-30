@@ -28,8 +28,8 @@
 | 【完整版】[ruoyi-vue-pro](https://gitee.com/zhijiantianya/ruoyi-vue-pro) | [`master`](https://gitee.com/zhijiantianya/ruoyi-vue-pro/tree/master/) 分支 | [`master-jdk17`](https://gitee.com/zhijiantianya/ruoyi-vue-pro/tree/master-jdk17/) 分支 |
 | 【精简版】[yudao-boot-mini](https://gitee.com/yudaocode/yudao-boot-mini) | [`master`](https://gitee.com/yudaocode/yudao-boot-mini/tree/master/) 分支   | [`master-jdk17`](https://gitee.com/yudaocode/yudao-boot-mini/tree/master-jdk17/) 分支   |
 
-* 【完整版】：包括系统功能、基础设施、会员中心、数据报表、工作流程、商城系统、微信公众号、CRM、ERP 等功能
-* 【精简版】：只包括系统功能、基础设施功能，不包括会员中心、数据报表、工作流程、商城系统、微信公众号、CRM、ERP 等功能
+* 【完整版】：包括系统功能、基础设施、会员中心、数据报表、工作流程、微信公众号、CRM、ERP 等功能
+* 【精简版】：只包括系统功能、基础设施功能，不包括会员中心、数据报表、工作流程、微信公众号、CRM、ERP 等功能
 
 可参考 [《迁移文档》](https://doc.iocoder.cn/migrate-module/) ，只需要 5-10 分钟，即可将【完整版】按需迁移到【精简版】
 
@@ -55,7 +55,7 @@
 * 工作流使用 Flowable，支持动态表单、在线设计流程、会签 / 或签、多种任务分配方式
 * 高效率开发，使用代码生成器可以一键生成 Java、Vue 前后端代码、SQL 脚本、接口文档，支持单表、树表、主子表
 * 实时通信，采用 Spring WebSocket 实现，内置 Token 身份校验，支持 WebSocket 集群
-* 集成微信小程序、微信公众号、企业微信、钉钉等三方登陆，集成支付宝、微信等支付与退款
+* 集成微信小程序、微信公众号、企业微信、钉钉等三方登陆
 * 集成阿里云、腾讯云等短信渠道，集成 MinIO、阿里云、腾讯云、七牛云等云存储服务
 * 集成报表设计器、大屏设计器，通过拖拽即可生成酷炫的报表与大屏
 
@@ -79,8 +79,6 @@
 |----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
 | [yudao-ui-admin-vue3](https://gitee.com/yudaocode/yudao-ui-admin-vue3)     | [![Gitee star](https://gitee.com/yudaocode/yudao-ui-admin-vue3/badge/star.svg?theme=white)](https://gitee.com/yudaocode/yudao-ui-admin-vue3) [![GitHub stars](https://img.shields.io/github/stars/yudaocode/yudao-ui-admin-vue3.svg?style=social&label=Stars)](https://github.com/yudaocode/yudao-ui-admin-vue3)         | 基于 Vue3 + element-plus 实现的管理后台         |
 | [yudao-ui-admin-vben](https://gitee.com/yudaocode/yudao-ui-admin-vben)     | [![Gitee star](https://gitee.com/yudaocode/yudao-ui-admin-vben/badge/star.svg?theme=white)](https://gitee.com/yudaocode/yudao-ui-admin-vben) [![GitHub stars](https://img.shields.io/github/stars/yudaocode/yudao-ui-admin-vben.svg?style=social&label=Stars)](https://github.com/yudaocode/yudao-ui-admin-vben)         | 基于 Vue3 + vben(ant-design-vue) 实现的管理后台 |
-| [yudao-mall-uniapp](https://gitee.com/yudaocode/yudao-mall-uniapp)         | [![Gitee star](https://gitee.com/yudaocode/yudao-mall-uniapp/badge/star.svg?theme=white)](https://gitee.com/yudaocode/yudao-mall-uniapp) [![GitHub stars](https://img.shields.io/github/stars/yudaocode/yudao-mall-uniapp.svg?style=social&label=Stars)](https://github.com/yudaocode/yudao-mall-uniapp)                 | 基于 uni-app 实现的商城小程序                    |
-| [yudao-ui-admin-vue2](https://gitee.com/yudaocode/yudao-ui-admin-vue2)     | [![Gitee star](https://gitee.com/yudaocode/yudao-ui-admin-vue2/badge/star.svg?theme=white)](https://gitee.com/yudaocode/yudao-ui-admin-vue2) [![GitHub stars](https://img.shields.io/github/stars/yudaocode/yudao-ui-admin-vue2.svg?style=social&label=Stars)](https://github.com/yudaocode/yudao-ui-admin-vue2)         | 基于 Vue2 + element-ui 实现的管理后台           |
 | [yudao-ui-admin-uniapp](https://gitee.com/yudaocode/yudao-ui-admin-uniapp) | [![Gitee star](https://gitee.com/yudaocode/yudao-ui-admin-uniapp/badge/star.svg?theme=white)](https://gitee.com/yudaocode/yudao-ui-admin-uniapp) [![GitHub stars](https://img.shields.io/github/stars/yudaocode/yudao-ui-admin-uniapp.svg?style=social&label=Stars)](https://github.com/yudaocode/yudao-ui-admin-uniapp) | 基于 Vue2 + element-ui 实现的管理后台           |
 | [yudao-ui-go-view](https://gitee.com/yudaocode/yudao-ui-go-view)           | [![Gitee star](https://gitee.com/yudaocode/yudao-ui-go-view/badge/star.svg?theme=white)](https://gitee.com/yudaocode/yudao-ui-go-view) [![GitHub stars](https://img.shields.io/github/stars/yudaocode/yudao-ui-go-view.svg?style=social&label=Stars)](https://github.com/yudaocode/yudao-ui-go-view)                     | 基于 Vue3 + naive-ui 实现的大屏报表             |
 
@@ -102,7 +100,7 @@
 
 团队包含专业的项目经理、架构师、前端工程师、后端工程师、测试工程师、运维工程师，可以提供全流程的外包服务。
 
-项目可以是商城、SCRM 系统、OA 系统、物流系统、ERP 系统、CMS 系统、HIS 系统、支付系统、IM 聊天、微信公众号、微信小程序等等。
+项目可以是 SCRM 系统、OA 系统、物流系统、ERP 系统、CMS 系统、HIS 系统、IM 聊天、微信公众号、微信小程序等等。
 
 ## 🐼 内置功能
 
@@ -111,8 +109,8 @@
 ![功能分层](/.image/common/ruoyi-vue-pro-biz.png)
 
 * 通用模块（必选）：系统功能、基础设施
-* 通用模块（可选）：工作流程、支付系统、数据报表、会员中心
-* 业务系统（按需）：ERP 系统、CRM 系统、商城系统、微信公众号、AI 大模型
+* 通用模块（可选）：工作流程、数据报表
+* 业务系统（按需）：ERP 系统
 
 > 友情提示：本项目基于 RuoYi-Vue 修改，**重构优化**后端的代码，**美化**前端的界面。
 >
@@ -188,16 +186,6 @@
 | 延迟节点       | 执行到该节点，审批等待一段时间再执行，支持固定时长、固定日期等                                                     | ✅    |
 | 拓展设置       | 流程前置/后置通知，节点（任务）前置、后置通知，流程报表，自动审批去重，自定流程编号、标题、摘要，流程报表等                              | ✅    |
 
-### 支付系统
-
-|     | 功能   | 描述                        |
-|-----|------|---------------------------|
-| 🚀  | 应用信息 | 配置商户的应用信息，对接支付宝、微信等多个支付渠道 |
-| 🚀  | 支付订单 | 查看用户发起的支付宝、微信等的【支付】订单     |
-| 🚀  | 退款订单 | 查看用户发起的支付宝、微信等的【退款】订单     |
-| 🚀  | 回调通知 | 查看支付回调业务的【支付】【退款】的通知结果    |
-| 🚀  | 接入示例 | 提供接入支付系统的【支付】【退款】的功能实战    |
-
 ### 基础设施
 
 |     | 功能        | 描述                                           |
@@ -230,59 +218,11 @@
 | 🚀  | 报表设计器 | 支持数据报表、图形报表、打印设计等  |
 | 🚀  | 大屏设计器 | 拖拽生成数据大屏，内置几十种图表组件 |
 
-### 微信公众号
-
-|    | 功能     | 描述                            |
-|----|--------|-------------------------------|
-| 🚀 | 账号管理   | 配置接入的微信公众号，可支持多个公众号           |
-| 🚀 | 数据统计   | 统计公众号的用户增减、累计用户、消息概况、接口分析等数据  |
-| 🚀 | 粉丝管理   | 查看已关注、取关的粉丝列表，可对粉丝进行同步、打标签等操作 |
-| 🚀 | 消息管理   | 查看粉丝发送的消息列表，可主动回复粉丝消息         |
-| 🚀 | 模版消息   | 配置和发送模版消息，用于向粉丝推送通知类消息        |
-| 🚀 | 自动回复   | 自动回复粉丝发送的消息，支持关注回复、消息回复、关键字回复 |
-| 🚀 | 标签管理   | 对公众号的标签进行创建、查询、修改、删除等操作       |
-| 🚀 | 菜单管理   | 自定义公众号的菜单，也可以从公众号同步菜单         |
-| 🚀 | 素材管理   | 管理公众号的图片、语音、视频等素材，支持在线播放语音、视频 |
-| 🚀 | 图文草稿箱  | 新增常用的图文素材到草稿箱，可发布到公众号         |
-| 🚀 | 图文发表记录 | 查看已发布成功的图文素材，支持删除操作           |
-
-### 商城系统
-
-演示地址：<https://doc.iocoder.cn/mall-preview/>
-
-![功能图](/.image/common/mall-feature.png)
-
-![功能图](/.image/common/mall-preview.png)
-
-### 会员中心
-
-|     | 功能   | 描述                               |
-|-----|------|----------------------------------|
-| 🚀  | 会员管理 | 会员是 C 端的消费者，该功能用于会员的搜索与管理        |
-| 🚀  | 会员标签 | 对会员的标签进行创建、查询、修改、删除等操作           |
-| 🚀  | 会员等级 | 对会员的等级、成长值进行管理，可用于订单折扣等会员权益      |
-| 🚀  | 会员分组 | 对会员进行分组，用于用户画像、内容推送等运营手段         |
-| 🚀  | 积分签到 | 回馈给签到、消费等行为的积分，会员可订单抵现、积分兑换等途径消耗 |
-
 ### ERP 系统
 
 演示地址：<https://doc.iocoder.cn/erp-preview/>
 
 ![功能图](/.image/common/erp-feature.png)
-
-### CRM 系统
-
-演示地址：<https://doc.iocoder.cn/crm-preview/>
-
-![功能图](/.image/common/crm-feature.png)
-
-### AI 大模型
-
-演示地址：<https://doc.iocoder.cn/ai-preview/>
-
-![功能图](/.image/common/ai-feature.png)
-
-![功能图](/.image/common/ai-preview.gif)
 
 ## 🐨 技术栈
 
@@ -294,15 +234,9 @@
 | `yudao-framework`     | Java 框架拓展          |
 | `yudao-server`        | 管理后台 + 用户 APP 的服务端 |
 | `yudao-module-system` | 系统功能的 Module 模块    |
-| `yudao-module-member` | 会员中心的 Module 模块    |
 | `yudao-module-infra`  | 基础设施的 Module 模块    |
 | `yudao-module-bpm`    | 工作流程的 Module 模块    |
-| `yudao-module-pay`    | 支付系统的 Module 模块    |
-| `yudao-module-mall`   | 商城系统的 Module 模块    |
 | `yudao-module-erp`    | ERP 系统的 Module 模块  |
-| `yudao-module-crm`    | CRM 系统的 Module 模块  |
-| `yudao-module-ai`     | AI 大模型的 Module 模块  |
-| `yudao-module-mp`     | 微信公众号的 Module 模块   |
 | `yudao-module-report` | 大屏报表 Module 模块     |
 
 ### 框架
@@ -368,12 +302,6 @@
 | MySQL & Redis | ![MySQL](/.image/MySQL.jpg)   | ![Redis](/.image/Redis.jpg) | -                         |
 | 监控平台          | ![Java监控](/.image/Java监控.jpg) | ![链路追踪](/.image/链路追踪.jpg)   | ![日志中心](/.image/日志中心.jpg) |
 
-### 支付系统
-
-| 模块      | biu                       | biu                             | biu                             |
-|---------|---------------------------|---------------------------------|---------------------------------|
-| 商家 & 应用 | ![商户信息](/.image/商户信息.jpg) | ![应用信息-列表](/.image/应用信息-列表.jpg) | ![应用信息-编辑](/.image/应用信息-编辑.jpg) |
-| 支付 & 退款 | ![支付订单](/.image/支付订单.jpg) | ![退款订单](/.image/退款订单.jpg)       | ---                             |
 ### 数据报表
 
 | 模块    | biu                             | biu                             | biu                                   |

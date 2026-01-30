@@ -72,11 +72,8 @@
         <vertx.version>4.5.22</vertx.version>
         <!-- 三方云服务相关 -->
         <awssdk.version>2.40.15</awssdk.version>
-        <justauth.version>1.16.7</justauth.version>
-        <justauth-starter.version>1.4.0</justauth-starter.version>
         <jimureport.version>2.1.3</jimureport.version>
         <jimubi.version>2.3.0</jimubi.version>
-        <weixin-java.version>4.7.9-20251224.161447</weixin-java.version>
         <alipay-sdk-java.version>4.40.607.ALL</alipay-sdk-java.version>
         <!-- 专属于 JDK8 安全漏洞升级 -->
         <logback.version>1.2.13</logback.version> <!-- 无法使用 1.3.X 版本，启动会报错 -->
@@ -125,11 +122,6 @@
                         <artifactId>spring-boot-starter</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>cn.iocoder.boot</groupId>
-                <artifactId>yudao-spring-boot-starter-biz-tenant</artifactId>
-                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>cn.iocoder.boot</groupId>
@@ -572,24 +564,6 @@
             </dependency>
 
             <dependency>
-                <groupId>me.zhyd.oauth</groupId>
-                <artifactId>JustAuth</artifactId> <!-- 社交登陆（例如说，个人微信、企业微信等等） -->
-                <version>${justauth.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.xkcoding.justauth</groupId>
-                <artifactId>justauth-spring-boot-starter</artifactId>
-                <version>${justauth-starter.version}</version>
-                <exclusions>
-                    <!-- 移除，避免和项目里的 hutool-all 冲突 -->
-                    <exclusion>
-                        <groupId>cn.hutool</groupId>
-                        <artifactId>hutool-core</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
                 <groupId>com.alipay.sdk</groupId>
                 <artifactId>alipay-sdk-java</artifactId>
                 <version>${alipay-sdk-java.version}</version>
@@ -599,22 +573,6 @@
                         <artifactId>bcprov-jdk15on</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>weixin-java-pay</artifactId>
-                <version>${weixin-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>wx-java-mp-spring-boot-starter</artifactId>
-                <version>${weixin-java.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.binarywang</groupId>
-                <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>
-                <version>${weixin-java.version}</version>
             </dependency>
 
             <!-- 积木报表-->

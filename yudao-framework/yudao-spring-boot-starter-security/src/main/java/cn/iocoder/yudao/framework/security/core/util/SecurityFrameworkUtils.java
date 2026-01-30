@@ -150,11 +150,8 @@ public class SecurityFrameworkUtils {
         if (loginUser == null) {
             return false;
         }
-        if (loginUser.getVisitTenantId() == null) {
-            return false;
-        }
-        // 重点：跨租户访问时，无法进行权限校验
-        return ObjUtil.notEqual(loginUser.getVisitTenantId(), loginUser.getTenantId());
+
+        return true;
     }
 
 }

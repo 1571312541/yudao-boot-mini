@@ -16,7 +16,7 @@ public interface NotifySendService {
      * 在 mobile 为空时，使用 userId 加载对应管理员的手机号
      *
      * @param userId 用户编号
-     * @param templateCode 短信模板编号
+     * @param templateCode 站内信模板编号
      * @param templateParams 短信模板参数
      * @return 发送日志编号
      */
